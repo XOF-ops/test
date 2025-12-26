@@ -125,29 +125,32 @@ See `AGENT_PROTOCOL.md` for complete operational instructions
 
 ```
 /
-├── research/               # MODE A outputs (analysis reports)
+├── copilot/                   # Autonomous agent system
+│   ├── agent_startup.py       # Python agent (MODE A/B/C logic)
+│   ├── requirements.txt       # Python dependencies (psycopg2-binary)
+│   ├── docs/                  # Agent documentation
+│   │   └── AGENT_PROTOCOL.md  # Complete operational protocol
+│   └── infrastructure/        # Deployment infrastructure
+│       ├── docker-compose.yml # Container orchestration
+│       └── schema.sql         # Database schema
+├── research/                  # MODE A outputs (analysis reports)
 │   └── report_template.md
-├── n8n/                   # Function nodes (JavaScript)
+├── n8n/                      # Function nodes (JavaScript)
 │   ├── extraction_logger.js
 │   ├── pattern_analyzer.js
 │   └── slack_alert_generator.js
-├── sql/                   # Database schema & queries
+├── sql/                      # Database schema & queries
 │   ├── schema.sql
 │   └── queries.sql
-├── slack/                 # Slack webhook templates
+├── slack/                    # Slack webhook templates
 │   └── payload_templates.md
-├── docs/                  # Standards & guides
+├── docs/                     # Standards & guides
 │   ├── coding_standards.md
 │   └── commit_message_template.md
-├── copilot/               # Autonomous agent scripts
-│   ├── agent_startup.py   # Python agent (logic & mode detection)
-│   └── requirements.txt   # Python dependencies
-├── chat_conversations/    # Historical conversation logs
-├── docker-compose.yml     # Infrastructure setup
-├── blockers.md           # Autonomous blocker tracking
-├── startup.sh            # Bash startup script (infrastructure)
-├── AGENT_PROTOCOL.md     # Complete operational protocol
-└── README.md             # This file
+├── chat_conversations/       # Historical conversation logs
+├── blockers.md              # Autonomous blocker tracking
+├── startup.sh               # Bash startup script (infrastructure)
+└── README.md                # This file
 ```
 
 ---
@@ -161,22 +164,17 @@ pip install -r copilot/requirements.txt
 
 ### 2. Start Infrastructure
 ```bash
+cd copilot/infrastructure
 docker compose up -d
 ```
 
-### 3. Initialize Database
+### 3. Run Agent Startup
 ```bash
-docker exec -i master_brain_postgres psql -U master_brain_user -d master_brain < sql/schema.sql
-```
-
-### 4. Run Agent Startup
-```bash
-# Bash version (infrastructure diagnostics)
-./startup.sh
-
 # Python version (agent logic and mode detection)
 python3 copilot/agent_startup.py
 ```
+
+**Note**: The database schema is automatically initialized on first container start via docker-entrypoint-initdb.d.
 
 ### 5. Access n8n
 - URL: `http://localhost:5678`

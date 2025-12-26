@@ -12,7 +12,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./sql/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U master_brain_user -d master_brain"]
       interval: 10s
@@ -40,16 +40,25 @@ services:
       - DB_POSTGRESDB_DATABASE=master_brain
       - DB_POSTGRESDB_USER=master_brain_user
       - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD:-master_brain_secure_password}
+      - WAIT_HOSTS=postgres:5432
+      - WAIT_HOSTS_TIMEOUT=300
     ports:
       - "5678:5678"
     volumes:
       - n8n_data:/home/node/.n8n
-      - ./n8n:/home/node/n8n-scripts:ro
+      - ../../n8n:/home/node/n8n-scripts:ro
     depends_on:
       postgres:
         condition: service_healthy
+        restart: true
     networks:
       - master_brain_network
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:5678/healthz || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
 
 volumes:
   postgres_data:

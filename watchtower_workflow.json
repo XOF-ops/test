@@ -89,7 +89,7 @@
         "operation": "executeQuery",
         "query": "INSERT INTO master_brain_extractions (message_content, patterns_detected, axioms_detected, timestamp) VALUES ($1, $2, $3, NOW());",
         "additionalFields": {
-          "queryParams": "={{ $json.meta.input_hash }}, {{ JSON.stringify($json.patterns_detected) }}, {{ $json.status }}"
+          "queryParams": "={{ $('World Stream (RSS)').item.json.title + ': ' + $('World Stream (RSS)').item.json.contentSnippet }}, {{ JSON.stringify($json.patterns_detected) }}, {{ $json.status }}"
         }
       },
       "id": "archive-memory",

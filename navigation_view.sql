@@ -15,7 +15,7 @@ SELECT
 FROM 
     master_brain_extractions
 WHERE 
-    patterns_detected::text != '[]'  -- Only show where a Pattern was found
+    jsonb_array_length(patterns_detected) > 0  -- Only show where a Pattern was found
 ORDER BY 
     timestamp DESC
 LIMIT 50;

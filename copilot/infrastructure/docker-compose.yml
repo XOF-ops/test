@@ -60,6 +60,33 @@ services:
       retries: 5
       start_period: 60s
 
+  # A1: Existence is Relational - Agent API as the Mind
+  agent-api:
+    build:
+      context: ../../
+      dockerfile: Dockerfile
+    container_name: master_brain_agent_api
+    restart: unless-stopped
+    environment:
+      - DB_HOST=postgres
+      - DB_NAME=master_brain
+      - DB_USER=master_brain_user
+      - DB_PASSWORD=${POSTGRES_PASSWORD:-master_brain_secure_password}
+      - FLASK_DEBUG=False
+    ports:
+      - "5000:5000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - master_brain_network
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import requests; requests.get('http://localhost:5000/health').raise_for_status()\" || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
 volumes:
   postgres_data:
     driver: local

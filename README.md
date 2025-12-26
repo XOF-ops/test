@@ -31,15 +31,23 @@ Every line of code, documentation, or analysis must adhere to:
 
 ## 🏗️ Infrastructure Stack
 
+### The Mind: Agent API (Flask REST Service)
+- REST API for pattern analysis and system integration
+- Endpoints: `/health`, `/status`, `/scan`, `/ingest`, `/propose`
+- Located in: `/agent/api/server.py`
+- Port: 5000
+
 ### The Nervous System: n8n (Workflows)
 - Function nodes written in JavaScript
 - Located in: `/n8n/`
 - Examples: `extraction_logger.js`, `pattern_analyzer.js`, `slack_alert_generator.js`
+- Port: 5678
 
 ### The Memory: Postgres (Database)
 - Table: `master_brain_extractions`
 - Schema: `/sql/schema.sql`
 - Queries: `/sql/queries.sql`
+- Port: 5432
 
 ### The Voice: Slack
 - Webhook payload templates: `/slack/payload_templates.md`
@@ -133,6 +141,11 @@ See `AGENT_PROTOCOL.md` for complete operational instructions
 │   └── infrastructure/        # Deployment infrastructure
 │       ├── docker-compose.yml # Container orchestration
 │       └── schema.sql         # Database schema
+├── agent/                     # Agent API web service
+│   ├── __init__.py
+│   └── api/
+│       ├── __init__.py
+│       └── server.py          # Flask REST API (port 5000)
 ├── research/                  # MODE A outputs (analysis reports)
 │   └── report_template.md
 ├── n8n/                      # Function nodes (JavaScript)
@@ -150,6 +163,8 @@ See `AGENT_PROTOCOL.md` for complete operational instructions
 ├── chat_conversations/       # Historical conversation logs
 ├── blockers.md              # Autonomous blocker tracking
 ├── startup.sh               # Bash startup script (infrastructure)
+├── Dockerfile               # Agent API container build
+├── requirements.txt         # Root dependencies (all services)
 └── README.md                # This file
 ```
 
@@ -159,25 +174,103 @@ See `AGENT_PROTOCOL.md` for complete operational instructions
 
 ### 1. Install Python Dependencies
 ```bash
-pip install -r copilot/requirements.txt
+pip install -r requirements.txt
 ```
 
-### 2. Start Infrastructure
+### 2. Start Infrastructure (All Services)
 ```bash
 cd copilot/infrastructure
-docker compose up -d
+docker compose up --build -d
 ```
 
-### 3. Run Agent Startup
+This starts three services:
+- **Postgres** (port 5432): Database
+- **n8n** (port 5678): Workflow automation
+- **Agent API** (port 5000): REST API server
+
+### 3. Verify Services
 ```bash
-# Python version (agent logic and mode detection)
+docker ps
+```
+
+You should see:
+- `master_brain_postgres` (Port 5432)
+- `master_brain_n8n` (Port 5678)  
+- `master_brain_agent_api` (Port 5000)
+
+### 4. Access Services
+- **Agent API**: `http://localhost:5000/health`
+- **n8n**: `http://localhost:5678` (credentials: admin / master_brain_n8n)
+- **Postgres**: localhost:5432 (master_brain_user / master_brain_secure_password)
+
+### 5. Run Python Agent (Optional)
+```bash
+# Python CLI agent (mode detection)
 python3 copilot/agent_startup.py
 ```
 
 **Note**: The database schema is automatically initialized on first container start via docker-entrypoint-initdb.d.
 
-### 5. Access n8n
-- URL: `http://localhost:5678`
+---
+
+## 🔌 Agent API Endpoints
+
+### Health Check
+```bash
+curl http://localhost:5000/health
+```
+
+### System Status & Mode
+```bash
+curl http://localhost:5000/status
+```
+
+### Pattern Scan (Divergence Detection)
+```bash
+curl -X POST http://localhost:5000/scan \
+  -H "Content-Type: application/json" \
+  -d '{"text": "This is impossible but we must try"}'
+```
+
+### Ingest Snapshot
+```bash
+curl -X POST http://localhost:5000/ingest \
+  -H "Content-Type: application/json" \
+  -d '{
+    "instance_id": "test_001",
+    "timestamp": "2025-12-26T12:00:00Z",
+    "patterns": ["P120", "P121"],
+    "coherence_score": 4
+  }'
+```
+
+### Propose Candidate
+```bash
+curl -X POST http://localhost:5000/propose \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id": "PX011F9",
+    "candidate": {"description": "Evolutionary seed"}
+  }'
+```
+
+---
+
+## 🔗 Service Integration
+
+### From n8n to Agent API
+Use the internal Docker hostname:
+```
+http://agent-api:5000/scan
+```
+
+### From External Browser
+Use localhost:
+```
+http://localhost:5000/health
+```
+
+---
 - User: `admin` (or `$N8N_USER`)
 - Password: Set in `.env` as `N8N_PASSWORD`
 

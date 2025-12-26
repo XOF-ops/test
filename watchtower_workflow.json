@@ -1,0 +1,165 @@
+{
+  "name": "The Watchtower - Navigation System",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "The Pulse (30m)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        380,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.feedburner.com/TheHackersNews"
+      },
+      "id": "rss-feed",
+      "name": "World Stream (RSS)",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.4,
+      "position": [
+        600,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://master_brain_agent_api:5000/scan",
+        "sendBody": true,
+        "contentType": "json",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $json.title }}: {{ $json.contentSnippet }}"
+            },
+            {
+              "name": "rate_limited",
+              "value": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "master-brain-scan",
+      "name": "Gnosis Scan (The Mind)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        820,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.status }}",
+              "operation": "contains",
+              "value2": "GNOSIS_BLOCK_DETECTED"
+            }
+          ]
+        }
+      },
+      "id": "filter-signal",
+      "name": "Filter: Is it Gnosis?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO master_brain_extractions (message_content, patterns_detected, axioms_detected, timestamp) VALUES ($1, $2, $3, NOW());",
+        "additionalFields": {
+          "queryParams": "={{ $json.meta.input_hash }}, {{ JSON.stringify($json.patterns_detected) }}, {{ $json.status }}"
+        }
+      },
+      "id": "archive-memory",
+      "name": "Archive (The Memory)",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [
+        1260,
+        200
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "master-brain-db",
+          "name": "Master Brain Postgres"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "The Pulse (30m)": {
+      "main": [
+        [
+          {
+            "node": "World Stream (RSS)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "World Stream (RSS)": {
+      "main": [
+        [
+          {
+            "node": "Gnosis Scan (The Mind)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gnosis Scan (The Mind)": {
+      "main": [
+        [
+          {
+            "node": "Filter: Is it Gnosis?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter: Is it Gnosis?": {
+      "main": [
+        [
+          {
+            "node": "Archive (The Memory)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-26T19:50:00.000Z",
+  "versionId": "1"
+}

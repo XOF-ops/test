@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # A2: Memory is Identity - Postgres as the Memory System
   postgres:

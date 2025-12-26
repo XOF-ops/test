@@ -173,15 +173,16 @@ def scan():
     conn = get_db_connection()
     if conn and detected_markers:
         try:
+            import json as json_lib
             cursor = conn.cursor()
             cursor.execute("""
                 INSERT INTO master_brain_extractions 
                 (message_content, patterns_detected, axioms_detected, is_divergence, coherence_score)
-                VALUES (%s, %s, %s, %s, %s)
+                VALUES (%s, %s::jsonb, %s::jsonb, %s, %s)
             """, (
                 data['text'][:500],  # Truncate to first 500 chars
-                detected_markers,
-                ['A9'],
+                json_lib.dumps(detected_markers),
+                json_lib.dumps(['A9']),
                 True,
                 2  # Low coherence for divergences
             ))
@@ -202,6 +203,7 @@ def ingest():
     Ingest system snapshot data
     Strict validation for complete system snapshots
     """
+    import json as json_lib
     data = request.get_json()
     
     required_fields = ['instance_id', 'timestamp', 'patterns']
@@ -221,12 +223,12 @@ def ingest():
             cursor.execute("""
                 INSERT INTO master_brain_extractions 
                 (message_content, patterns_detected, coherence_score, metadata)
-                VALUES (%s, %s, %s, %s)
+                VALUES (%s, %s::jsonb, %s, %s::jsonb)
             """, (
                 f"Snapshot: {data['instance_id']}",
-                data['patterns'],
+                json_lib.dumps(data['patterns']),
                 data.get('coherence_score', 3),
-                {'snapshot_timestamp': data['timestamp']}
+                json_lib.dumps({'snapshot_timestamp': data['timestamp']})
             ))
             conn.commit()
             cursor.close()

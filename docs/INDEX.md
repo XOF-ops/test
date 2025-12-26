@@ -4,8 +4,11 @@
 
 **New to the system?** Start here:
 1. Read: [README.md](../README.md) - System overview and startup instructions
-2. Run: `./startup.sh` - Autonomous agent startup sequence
-3. Deploy: `docker compose up -d` - Start infrastructure
+2. Read: [AGENT_PROTOCOL.md](../AGENT_PROTOCOL.md) - Complete operational protocol
+3. Install: `pip install -r requirements.txt` - Python dependencies
+4. Run: `./startup.sh` - Infrastructure diagnostics (Bash)
+5. Run: `python3 agent_startup.py` - Agent logic and mode detection (Python)
+6. Deploy: `docker compose up -d` - Start infrastructure
 
 ---
 
@@ -13,7 +16,9 @@
 
 ### System Architecture
 - **[README.md](../README.md)** - Main system documentation, current status, infrastructure overview
+- **[AGENT_PROTOCOL.md](../AGENT_PROTOCOL.md)** - Complete autonomous agent operational protocol
 - **[docker-compose.yml](../docker-compose.yml)** - Infrastructure definition (Postgres, n8n)
+- **[requirements.txt](../requirements.txt)** - Python dependencies for agent scripts
 
 ### Philosophical Foundation
 - **[axioms.md](axioms.md)** - The 5 immutable axioms (A1, A2, A4, A7, A9) with implementation examples
@@ -83,11 +88,17 @@
 - **[/blockers.md](../blockers.md)** - Active and resolved blockers (Prime Directive compliance)
 
 ### Startup Automation
-- **[/startup.sh](../startup.sh)** - Autonomous agent startup script
-  - Checks system status
+- **[/startup.sh](../startup.sh)** - Bash startup script (infrastructure diagnostics)
+  - Checks Docker Compose status
   - Queries Postgres for recent extractions
-  - Analyzes state
-  - Proposes next mode (A/B/C)
+  - Analyzes infrastructure health
+  - Provides quick command reference
+- **[/agent_startup.py](../agent_startup.py)** - Python agent startup (logic & mode detection)
+  - Connects to Memory (Postgres)
+  - Reads recent extractions
+  - Determines operational mode (A/B/C)
+  - Executes mode-specific actions
+  - A9 compliant error handling
 
 ---
 

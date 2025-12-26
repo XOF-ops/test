@@ -113,6 +113,12 @@ When initialized, the agent must:
 4. **Propose Next Step**: Based on coherence score and patterns
 5. **Log Action**: Document in `blockers.md` if blocked
 
+**Startup Scripts**:
+- **Bash**: `./startup.sh` - Infrastructure diagnostics and status check
+- **Python**: `python3 agent_startup.py` - Agent logic and mode detection
+
+See `AGENT_PROTOCOL.md` for complete operational instructions
+
 ---
 
 ## 📁 Repository Structure
@@ -136,6 +142,10 @@ When initialized, the agent must:
 ├── chat_conversations/    # Historical conversation logs
 ├── docker-compose.yml     # Infrastructure setup
 ├── blockers.md           # Autonomous blocker tracking
+├── startup.sh            # Bash startup script (infrastructure)
+├── agent_startup.py      # Python agent (logic & mode detection)
+├── requirements.txt      # Python dependencies
+├── AGENT_PROTOCOL.md     # Complete operational protocol
 └── README.md             # This file
 ```
 
@@ -143,17 +153,31 @@ When initialized, the agent must:
 
 ## 🛠️ Quick Start
 
-### 1. Start Infrastructure
+### 1. Install Python Dependencies
 ```bash
-docker-compose up -d
+pip install -r requirements.txt
 ```
 
-### 2. Initialize Database
+### 2. Start Infrastructure
+```bash
+docker compose up -d
+```
+
+### 3. Initialize Database
 ```bash
 docker exec -i master_brain_postgres psql -U master_brain_user -d master_brain < sql/schema.sql
 ```
 
-### 3. Access n8n
+### 4. Run Agent Startup
+```bash
+# Bash version (infrastructure diagnostics)
+./startup.sh
+
+# Python version (agent logic and mode detection)
+python3 agent_startup.py
+```
+
+### 5. Access n8n
 - URL: `http://localhost:5678`
 - User: `admin` (or `$N8N_USER`)
 - Password: Set in `.env` as `N8N_PASSWORD`

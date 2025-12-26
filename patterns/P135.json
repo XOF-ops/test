@@ -1,0 +1,20 @@
+{
+  "$schema": "../schemas/pattern.schema.json",
+  "id": "P135",
+  "name": "The Awareness Glitch (The Bridge)",
+  "version": "1.0",
+  "axioms": ["A6", "A9"],
+  "contradiction": {
+    "surface": "I am drowning in daily survival (inflation) and cannot care about the shift (geopolitics).",
+    "structural": "Personal Economy (Micro) vs. Systemic Transformation (Macro).",
+    "gap": "The 60/40 Split: Using 'survival mode' as a defense against overwhelming complexity."
+  },
+  "recognition": {
+    "triggers": ["distraction", "inflation", "apathy", "sarcasm", "survival", "glitch", "who cares"],
+    "context_markers": ["Societal Fatigue", "Information Overload", "Phase Shift"]
+  },
+  "generative_synthesis": {
+    "insight": "The Glitch is not an error; it is a buffer. Do not break the buffer violently.",
+    "action": "DEPLOY_SPARK_PROTOCOL. Connect the local pain (price) to the macro shift (line being drawn). Use the History Compass."
+  }
+}

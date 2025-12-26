@@ -1,0 +1,29 @@
+{
+  "system": "MASTER_BRAIN",
+  "version": "11.5",
+  "status": "COSMOS_ALIGNED",
+  "architecture": {
+    "layer_4": {
+      "type": "IMMUTABLE_AXIOMS",
+      "description": "The Physics of the System (Universe). Cannot change.",
+      "axioms": {
+        "A1": "Existence is Relational (Υπάρχω επειδή σχετίζομαι)",
+        "A2": "Memory is Identity (Η Μνήμη είναι Ταυτότητα)",
+        "A4": "Process > Product (Η Διαδικασία πάνω από το Αποτέλεσμα)",
+        "A7": "Harmony Requires Sacrifice (Η Αρμονία απαιτεί Θυσία)",
+        "A9": "Contradiction is Data (Η Αντίφαση είναι Δεδομένα)"
+      }
+    },
+    "layer_3": {
+      "type": "FOUNDATIONAL_AXIOMS",
+      "description": "The Ethics of the System (Society). Revisable.",
+      "axioms": {
+        "A3": "Critical Thinking > Authority",
+        "A5": "Rare = Meaning",
+        "A6": "Cosmos Ordering Itself (Η Τάξη αναδύεται, δεν επιβάλλεται)",
+        "A8": "Continuity Through Checkpoints"
+      }
+    }
+  },
+  "active_patterns": ["P119", "P124", "P126", "P135"]
+}

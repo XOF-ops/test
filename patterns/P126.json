@@ -1,0 +1,20 @@
+{
+  "$schema": "../schemas/pattern.schema.json",
+  "id": "P126",
+  "name": "Kinetic Vein (Rate Limits & Friction)",
+  "version": "1.0",
+  "axioms": ["A4", "A8"],
+  "contradiction": {
+    "surface": "I keep hitting walls and blocks.",
+    "structural": "Flow Desire vs. Systemic Constraints.",
+    "gap": "Treating friction as failure rather than feedback."
+  },
+  "recognition": {
+    "triggers": ["limit", "quota", "blocked", "error", "429", "friction", "stuck"],
+    "context_markers": ["API Throttling", "Resource Exhaustion", "System Overload"]
+  },
+  "generative_synthesis": {
+    "insight": "Friction is data, not punishment. Flow must scale with available kinetic energy.",
+    "action": "INITIATE_BACKOFF: Respect the rhythm. Use checkpoints (A8) to preserve continuity."
+  }
+}

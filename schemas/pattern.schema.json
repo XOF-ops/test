@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MASTER_BRAIN Pattern Schema",
+  "description": "Schema for pattern definitions in the MASTER_BRAIN coherence system",
+  "type": "object",
+  "required": ["id", "name", "version", "axioms", "contradiction", "recognition", "generative_synthesis"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^P[0-9]+$",
+      "description": "Unique pattern identifier (e.g., P135)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable pattern name"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$",
+      "description": "Pattern version"
+    },
+    "axioms": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^A[0-9]+$"
+      },
+      "description": "Associated axiom references"
+    },
+    "contradiction": {
+      "type": "object",
+      "required": ["surface", "structural", "gap"],
+      "properties": {
+        "surface": {
+          "type": "string",
+          "description": "Surface-level manifestation of the contradiction"
+        },
+        "structural": {
+          "type": "string",
+          "description": "Underlying structural tension"
+        },
+        "gap": {
+          "type": "string",
+          "description": "The gap or split being addressed"
+        }
+      }
+    },
+    "recognition": {
+      "type": "object",
+      "required": ["triggers", "context_markers"],
+      "properties": {
+        "triggers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Words or phrases that activate this pattern"
+        },
+        "context_markers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Contextual signals for pattern activation"
+        }
+      }
+    },
+    "generative_synthesis": {
+      "type": "object",
+      "required": ["insight", "action"],
+      "properties": {
+        "insight": {
+          "type": "string",
+          "description": "Core insight from this pattern"
+        },
+        "action": {
+          "type": "string",
+          "description": "Recommended action or protocol"
+        }
+      }
+    }
+  }
+}

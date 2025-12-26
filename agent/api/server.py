@@ -176,7 +176,7 @@ def scan():
             cursor = conn.cursor()
             cursor.execute("""
                 INSERT INTO master_brain_extractions 
-                (source_text, patterns_detected, axioms_applied, is_divergence, coherence_score)
+                (message_content, patterns_detected, axioms_detected, is_divergence, coherence_score)
                 VALUES (%s, %s, %s, %s, %s)
             """, (
                 data['text'][:500],  # Truncate to first 500 chars
@@ -220,7 +220,7 @@ def ingest():
             cursor = conn.cursor()
             cursor.execute("""
                 INSERT INTO master_brain_extractions 
-                (source_text, patterns_detected, coherence_score, metadata)
+                (message_content, patterns_detected, coherence_score, metadata)
                 VALUES (%s, %s, %s, %s)
             """, (
                 f"Snapshot: {data['instance_id']}",

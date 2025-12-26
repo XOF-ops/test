@@ -1,0 +1,18 @@
+{
+  "id": "a49a3e8a-916e-4eb3-a83e-e6d4f3612f2b",
+  "updated_at": "2025-12-26T17:49:40.146850",
+  "metadata": {
+    "model": "mistralai/mistral-7b-instruct:free",
+    "last_updated": "2025-12-26T17:49:40.146834"
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello, test message"
+    },
+    {
+      "role": "assistant",
+      "content": " "
+    }
+  ]
+}

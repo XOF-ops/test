@@ -1,0 +1,47 @@
+{
+  "id": "real-engine-test",
+  "updated_at": "2025-12-26T07:08:29.953378",
+  "metadata": {
+    "patterns_detected": [
+      {
+        "message_index": 0,
+        "pattern": {
+          "axioms_detected": [
+            "A1",
+            "A2",
+            "A4",
+            "A9"
+          ],
+          "patterns_detected": [
+            "P001",
+            "P050"
+          ],
+          "progress_markers": [
+            "Integration"
+          ],
+          "coherence": {
+            "score": "4/5",
+            "coherent": true
+          },
+          "classification": "MASTER_BRAIN",
+          "pattern_id": "P001",
+          "pattern_name": "Dyadic Synthesis",
+          "match_score": 0.85
+        },
+        "timestamp": "2025-12-26T07:08:29.408365"
+      }
+    ],
+    "model": "mistralai/mistral-7b-instruct:free",
+    "last_updated": "2025-12-26T07:08:29.953355"
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "The dialogue between us creates something relational. This process matters more than any conclusion. Contradictions are both true - the tension itself is data we must preserve in the archive."
+    },
+    {
+      "role": "assistant",
+      "content": " "
+    }
+  ]
+}

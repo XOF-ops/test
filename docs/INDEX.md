@@ -5,9 +5,9 @@
 **New to the system?** Start here:
 1. Read: [README.md](../README.md) - System overview and startup instructions
 2. Read: [AGENT_PROTOCOL.md](../AGENT_PROTOCOL.md) - Complete operational protocol
-3. Install: `pip install -r requirements.txt` - Python dependencies
+3. Install: `pip install -r copilot/requirements.txt` - Python dependencies
 4. Run: `./startup.sh` - Infrastructure diagnostics (Bash)
-5. Run: `python3 agent_startup.py` - Agent logic and mode detection (Python)
+5. Run: `python3 copilot/agent_startup.py` - Agent logic and mode detection (Python)
 6. Deploy: `docker compose up -d` - Start infrastructure
 
 ---
@@ -18,7 +18,7 @@
 - **[README.md](../README.md)** - Main system documentation, current status, infrastructure overview
 - **[AGENT_PROTOCOL.md](../AGENT_PROTOCOL.md)** - Complete autonomous agent operational protocol
 - **[docker-compose.yml](../docker-compose.yml)** - Infrastructure definition (Postgres, n8n)
-- **[requirements.txt](../requirements.txt)** - Python dependencies for agent scripts
+- **[copilot/requirements.txt](../copilot/requirements.txt)** - Python dependencies for agent scripts
 
 ### Philosophical Foundation
 - **[axioms.md](axioms.md)** - The 5 immutable axioms (A1, A2, A4, A7, A9) with implementation examples
@@ -93,7 +93,7 @@
   - Queries Postgres for recent extractions
   - Analyzes infrastructure health
   - Provides quick command reference
-- **[/agent_startup.py](../agent_startup.py)** - Python agent startup (logic & mode detection)
+- **[/copilot/agent_startup.py](../copilot/agent_startup.py)** - Python agent startup (logic & mode detection)
   - Connects to Memory (Postgres)
   - Reads recent extractions
   - Determines operational mode (A/B/C)

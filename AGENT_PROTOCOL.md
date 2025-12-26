@@ -138,7 +138,7 @@ When acting in Agent Mode, identify which **MODE** you are in and execute accord
 
 **Tools**:
 - SQL: `/sql/queries.sql`
-- Python: `agent_startup.py` mode detection
+- Python: `copilot/agent_startup.py` mode detection
 - Template: `/research/report_template.md`
 
 **Success Criteria**:
@@ -343,7 +343,7 @@ When initialized, the agent must:
 
 **Implementation**:
 - Bash: `./startup.sh` - Infrastructure diagnostics
-- Python: `python3 agent_startup.py` - Logic and mode detection
+- Python: `python3 copilot/agent_startup.py` - Logic and mode detection
 
 ---
 
@@ -387,7 +387,7 @@ ELSE MODE_B (collect more data)
 - Research reports stored in `/research/`
 
 ### Python ↔ Infrastructure
-- `agent_startup.py` reads from Postgres
+- `copilot/agent_startup.py` reads from Postgres
 - Environment variables from `.env` file
 - Mode decisions trigger appropriate workflows
 
@@ -421,8 +421,8 @@ docker compose ps  # Verify both services running
 
 ### Test the Agent (Python)
 ```bash
-pip install psycopg2-binary
-python3 agent_startup.py
+pip install -r copilot/requirements.txt
+python3 copilot/agent_startup.py
 ```
 
 ### Connect n8n

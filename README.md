@@ -115,7 +115,7 @@ When initialized, the agent must:
 
 **Startup Scripts**:
 - **Bash**: `./startup.sh` - Infrastructure diagnostics and status check
-- **Python**: `python3 agent_startup.py` - Agent logic and mode detection
+- **Python**: `python3 copilot/agent_startup.py` - Agent logic and mode detection
 
 See `AGENT_PROTOCOL.md` for complete operational instructions
 
@@ -139,12 +139,13 @@ See `AGENT_PROTOCOL.md` for complete operational instructions
 ├── docs/                  # Standards & guides
 │   ├── coding_standards.md
 │   └── commit_message_template.md
+├── copilot/               # Autonomous agent scripts
+│   ├── agent_startup.py   # Python agent (logic & mode detection)
+│   └── requirements.txt   # Python dependencies
 ├── chat_conversations/    # Historical conversation logs
 ├── docker-compose.yml     # Infrastructure setup
 ├── blockers.md           # Autonomous blocker tracking
 ├── startup.sh            # Bash startup script (infrastructure)
-├── agent_startup.py      # Python agent (logic & mode detection)
-├── requirements.txt      # Python dependencies
 ├── AGENT_PROTOCOL.md     # Complete operational protocol
 └── README.md             # This file
 ```
@@ -155,7 +156,7 @@ See `AGENT_PROTOCOL.md` for complete operational instructions
 
 ### 1. Install Python Dependencies
 ```bash
-pip install -r requirements.txt
+pip install -r copilot/requirements.txt
 ```
 
 ### 2. Start Infrastructure
@@ -174,7 +175,7 @@ docker exec -i master_brain_postgres psql -U master_brain_user -d master_brain <
 ./startup.sh
 
 # Python version (agent logic and mode detection)
-python3 agent_startup.py
+python3 copilot/agent_startup.py
 ```
 
 ### 5. Access n8n

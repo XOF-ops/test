@@ -2,7 +2,7 @@
 
 ## System Status
 
-**Location**: `organic-space-barnacle` (GitHub Codespace)  
+**Location**: GitHub Codespace (or local development environment)  
 **Mode**: Autonomous Research & Development  
 **Current Tier**: Tier 2  
 **Last Update**: 2025-12-26

@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS master_brain_extractions (
     axioms_detected JSONB DEFAULT '[]'::jsonb,
     
     -- Coherence Tracking
-    coherence_score INTEGER CHECK (coherence_score >= 1 AND coherence_score <= 5),
+    coherence_score INTEGER,
     tier VARCHAR(50),
     
     -- Metadata
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS master_brain_extractions (
     -- Additional Context
     metadata JSONB DEFAULT '{}'::jsonb,
     
-    -- Indexes for efficient querying
+    -- Constraints
     CONSTRAINT valid_coherence CHECK (coherence_score IS NULL OR (coherence_score >= 1 AND coherence_score <= 5))
 );
 

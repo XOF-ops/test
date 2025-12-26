@@ -29,7 +29,7 @@ try {
     // Build pattern co-occurrence matrix
     for (let i = 0; i < patterns.length; i++) {
       for (let j = i + 1; j < patterns.length; j++) {
-        const key = `${patterns[i]}_${patterns[j]}`;
+        const key = `${patterns[i]}::${patterns[j]}`;
         patternCorrelations[key] = (patternCorrelations[key] || 0) + 1;
       }
     }
@@ -48,7 +48,7 @@ try {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 5)
     .map(([patterns, count]) => ({
-      patterns: patterns.split('_'),
+      patterns: patterns.split('::'),
       count: count,
       correlation_strength: count / extractions.length
     }));

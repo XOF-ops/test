@@ -45,13 +45,13 @@ try {
   const params = [
     conversationId,
     messageContent,
-    JSON.stringify(patternsDetected),
-    JSON.stringify(axiomsDetected),
+    patternsDetected,
+    axiomsDetected,
     coherenceScore,
     tier,
     mode,
     `Agent_${mode}_${new Date().toISOString()}`,
-    JSON.stringify($json.metadata || {})
+    $json.metadata || {}
   ];
   
   // Return for Postgres node

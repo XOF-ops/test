@@ -1,0 +1,30 @@
+{
+  "id": "integration-test-001",
+  "updated_at": "2025-12-26T07:01:54.390566",
+  "metadata": {
+    "patterns_detected": [
+      {
+        "message_index": 0,
+        "pattern": {
+          "pattern_id": "P119",
+          "insight": "Detected P119 pattern (mock mode)",
+          "match_score": 0.75,
+          "mock": true
+        },
+        "timestamp": "2025-12-26T07:01:53.115241"
+      }
+    ],
+    "model": "mistralai/mistral-7b-instruct:free",
+    "last_updated": "2025-12-26T07:01:54.390546"
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "I need to optimize my workflow but it kills creativity"
+    },
+    {
+      "role": "assistant",
+      "content": " "
+    }
+  ]
+}

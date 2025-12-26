@@ -1,0 +1,17 @@
+{
+  "id": "n8n-test-001",
+  "updated_at": "2025-12-26T05:29:32.881901",
+  "metadata": {
+    "model": "mistralai/mistral-7b-instruct:free"
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "This is a test message for n8n integration. Can you confirm this works?"
+    },
+    {
+      "role": "assistant",
+      "content": " "
+    }
+  ]
+}

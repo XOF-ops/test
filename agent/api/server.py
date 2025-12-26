@@ -15,6 +15,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sys
 import os
+import json
 from datetime import datetime
 import psycopg2
 
@@ -173,7 +174,6 @@ def scan():
     conn = get_db_connection()
     if conn and detected_markers:
         try:
-            import json as json_lib
             cursor = conn.cursor()
             cursor.execute("""
                 INSERT INTO master_brain_extractions 
@@ -181,8 +181,8 @@ def scan():
                 VALUES (%s, %s::jsonb, %s::jsonb, %s, %s)
             """, (
                 data['text'][:500],  # Truncate to first 500 chars
-                json_lib.dumps(detected_markers),
-                json_lib.dumps(['A9']),
+                json.dumps(detected_markers),
+                json.dumps(['A9']),
                 True,
                 2  # Low coherence for divergences
             ))
@@ -203,7 +203,6 @@ def ingest():
     Ingest system snapshot data
     Strict validation for complete system snapshots
     """
-    import json as json_lib
     data = request.get_json()
     
     required_fields = ['instance_id', 'timestamp', 'patterns']
@@ -226,9 +225,9 @@ def ingest():
                 VALUES (%s, %s::jsonb, %s, %s::jsonb)
             """, (
                 f"Snapshot: {data['instance_id']}",
-                json_lib.dumps(data['patterns']),
+                json.dumps(data['patterns']),
                 data.get('coherence_score', 3),
-                json_lib.dumps({'snapshot_timestamp': data['timestamp']})
+                json.dumps({'snapshot_timestamp': data['timestamp']})
             ))
             conn.commit()
             cursor.close()

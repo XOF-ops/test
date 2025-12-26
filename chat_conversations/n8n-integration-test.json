@@ -1,0 +1,48 @@
+{
+  "id": "n8n-integration-test",
+  "updated_at": "2025-12-26T07:47:50.046740",
+  "metadata": {
+    "patterns_detected": [
+      {
+        "message_index": 0,
+        "pattern": {
+          "engine": "MASTER_BRAIN",
+          "version": "1.0",
+          "timestamp": "2025-12-26T07:47:49.502396Z",
+          "input_hash": "a2d8a1205cea85ac",
+          "axioms_detected": [
+            "A1",
+            "A2",
+            "A4",
+            "A9"
+          ],
+          "patterns_detected": [
+            "P001"
+          ],
+          "progress_markers": [],
+          "coherence": {
+            "score": "4/5",
+            "coherent": true
+          },
+          "classification": "MASTER_BRAIN",
+          "pattern_id": "P001",
+          "pattern_name": "Dyadic Synthesis",
+          "match_score": 0.85
+        },
+        "timestamp": "2025-12-26T07:47:49.508685"
+      }
+    ],
+    "model": "mistralai/mistral-7b-instruct:free",
+    "last_updated": "2025-12-26T07:47:50.046724"
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "The dialogue between us creates relational knowledge. This process matters more than conclusions. We preserve contradictions as data."
+    },
+    {
+      "role": "assistant",
+      "content": " "
+    }
+  ]
+}

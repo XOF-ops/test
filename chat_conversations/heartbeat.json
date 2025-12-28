@@ -1,0 +1,18 @@
+{
+  "id": "heartbeat",
+  "updated_at": "2025-12-28T19:36:52.906007",
+  "metadata": {
+    "model": "mistralai/mistral-7b-instruct:free",
+    "last_updated": "2025-12-28T19:36:52.905991"
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "ping"
+    },
+    {
+      "role": "assistant",
+      "content": " [/s] "
+    }
+  ]
+}

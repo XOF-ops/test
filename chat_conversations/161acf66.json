@@ -1,0 +1,18 @@
+{
+  "id": "161acf66",
+  "updated_at": "2025-12-28T19:36:41.506221",
+  "metadata": {
+    "model": "openrouter/auto",
+    "last_updated": "2025-12-28T19:36:41.506209"
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello from test"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! How can I assist you in this test? Let's make it a success! \ud83d\ude0a"
+    }
+  ]
+}

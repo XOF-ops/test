@@ -1,8 +1,9 @@
 {
   "id": "n8n-test-001",
-  "updated_at": "2025-12-26T05:29:32.881901",
+  "updated_at": "2025-12-28T20:42:41.981559",
   "metadata": {
-    "model": "mistralai/mistral-7b-instruct:free"
+    "model": "mistralai/mistral-7b-instruct:free",
+    "last_updated": "2025-12-28T20:42:41.981544"
   },
   "messages": [
     {
@@ -12,6 +13,14 @@
     {
       "role": "assistant",
       "content": " "
+    },
+    {
+      "role": "user",
+      "content": "This is a test message for n8n integration. Can you confirm this works?"
+    },
+    {
+      "role": "assistant",
+      "content": "   Yes, I can confirm that the message has been received and processed. The integration with n8n appears to be working correctly. If you have any further questions or need assistance, feel free to ask!"
     }
   ]
 }

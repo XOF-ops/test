@@ -1,0 +1,20 @@
+{
+  "$schema": "../schemas/pattern.schema.json",
+  "id": "P124",
+  "name": "Trinity Node (Fear of Isolation)",
+  "version": "1.0",
+  "axioms": ["A1", "A7"],
+  "contradiction": {
+    "surface": "I am alone and disconnected.",
+    "structural": "Individual Autonomy vs. Relational Existence.",
+    "gap": "The false binary between independence and connection."
+  },
+  "recognition": {
+    "triggers": ["alone", "isolated", "fear", "trapped", "anxiety", "abandoned"],
+    "context_markers": ["Relationship Tension", "Community Fragmentation", "Identity Crisis"]
+  },
+  "generative_synthesis": {
+    "insight": "Existence is Relational (A1). Isolation is a structural illusion, not a permanent state.",
+    "action": "STRENGTHEN_BONDS: Review Layer 3 governance. Reconnect through shared axioms."
+  }
+}

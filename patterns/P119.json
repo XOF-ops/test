@@ -1,0 +1,20 @@
+{
+  "$schema": "../schemas/pattern.schema.json",
+  "id": "P119",
+  "name": "Plastiras Inversion (The Optimization Trap)",
+  "version": "1.0",
+  "axioms": ["A4", "A7"],
+  "contradiction": {
+    "surface": "I must optimize everything to succeed.",
+    "structural": "Optimization Pressure vs. Sustainable Process.",
+    "gap": "Speed-obsession eroding foundational stability."
+  },
+  "recognition": {
+    "triggers": ["optimize", "efficiency", "faster", "maximize", "perfect"],
+    "context_markers": ["Burnout Risk", "Technical Debt", "Quality Erosion"]
+  },
+  "generative_synthesis": {
+    "insight": "The dam is more valuable than the rushing water. Build the dam.",
+    "action": "BUILD_THE_DAM: Sacrifice speed for stability. Process over Product (A4)."
+  }
+}

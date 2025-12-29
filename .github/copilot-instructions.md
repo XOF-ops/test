@@ -20,6 +20,10 @@ Coherence: [Impact on System]
 Change: [Technical Detail]
 ```
 
+**Note on Tier System:**
+- **Tier 1**: Perfect coherence (5/5) - major architectural changes
+- **Tier 2**: Standard changes with documented impact and rationale
+
 Example: `Tier 2: Postgres - Fix Connection Loop. Coherence: Restored Memory Access. Change: Updated docker-compose.yml ports.`
 
 ## Testing

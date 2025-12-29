@@ -131,9 +131,10 @@ def post_swarm_analysis():
 @app.route("/api/webhooks", methods=["GET"])
 def list_webhooks():
     """List all registered webhooks."""
+    webhooks = webhook_manager.list_webhooks()
     return jsonify({
-        "webhooks": webhook_manager.list_webhooks(),
-        "count": len(webhook_manager.list_webhooks())
+        "webhooks": webhooks,
+        "count": len(webhooks)
     })
 
 
@@ -223,4 +224,6 @@ def manual_friction_mining():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    debug = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
+    app.run(host="0.0.0.0", port=port, debug=debug)

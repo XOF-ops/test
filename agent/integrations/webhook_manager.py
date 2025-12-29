@@ -5,6 +5,7 @@ Handles webhook registration, listing, and sending MIGP payloads.
 
 import json
 import os
+import uuid
 import requests
 from typing import List, Dict, Any, Optional
 from datetime import datetime, timezone
@@ -34,10 +35,11 @@ class WebhookManager:
 
     def register(self, url: str, name: Optional[str] = None) -> Dict[str, Any]:
         """Register a new webhook URL."""
+        webhook_id = str(uuid.uuid4())[:8]
         webhook = {
-            "id": len(self.webhooks) + 1,
+            "id": webhook_id,
             "url": url,
-            "name": name or f"webhook-{len(self.webhooks) + 1}",
+            "name": name or f"webhook-{webhook_id}",
             "created_at": datetime.now(timezone.utc).isoformat(),
             "active": True
         }

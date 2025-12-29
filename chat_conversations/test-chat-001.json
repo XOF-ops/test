@@ -1,0 +1,18 @@
+{
+  "id": "test-chat-001",
+  "updated_at": "2025-12-29T06:24:38.014161",
+  "metadata": {
+    "model": "mistralai/mistral-7b-instruct:free",
+    "last_updated": "2025-12-29T06:24:38.014141"
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "Say hello in one sentence"
+    },
+    {
+      "role": "assistant",
+      "content": " "
+    }
+  ]
+}

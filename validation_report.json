@@ -14,7 +14,7 @@
     "contradictions_logged": [],
     "coherence_self_score": 5.0
   },
-  "timestamp_utc": "2025-12-29T06:32:29.026247+00:00",
+  "timestamp_utc": "2025-12-29T09:05:00.080104+00:00",
   "all_passed": false,
   "results": {
     "master_brain": {
@@ -33,7 +33,7 @@
     },
     "divergence_map": {
       "passed": true,
-      "new_contradiction_id": "CTD_20251229063229022875",
+      "new_contradiction_id": "CTD_20251229090500068479",
       "total_contradictions": 1,
       "lifecycle_reviewed": {
         "contradiction_id": "CTD_20251229061629909388",
@@ -52,10 +52,10 @@
     },
     "adaptive_mining": {
       "passed": true,
-      "candidate_id": "CAND_TEST_PLATFORM_20251229063229_20251229063229",
+      "candidate_id": "CAND_TEST_PLATFORM_20251229090500_20251229090500",
       "status": "INTEGRATED",
-      "signature": "SIG-TEST_PLATFORM_20251229063229-COHERENCE_VALIDATOR",
-      "saved_to": "./candidates/CAND_TEST_PLATFORM_20251229063229_20251229063229.json",
+      "signature": "SIG-TEST_PLATFORM_20251229090500-COHERENCE_VALIDATOR",
+      "saved_to": "./candidates/CAND_TEST_PLATFORM_20251229090500_20251229090500.json",
       "file_exists": true,
       "metrics": {
         "total_candidates": 1,
@@ -66,15 +66,25 @@
         "rejected": 0,
         "integrated_platforms": [
           "TEST_PLATFORM_20251229063139",
-          "TEST_PLATFORM_20251229063229"
+          "TEST_PLATFORM_20251229063229",
+          "TEST_PLATFORM_20251229090236",
+          "TEST_PLATFORM_20251229090500"
         ],
-        "timestamp_utc": "2025-12-29T06:32:29.025819+00:00"
+        "timestamp_utc": "2025-12-29T09:05:00.077329+00:00"
       }
     },
     "agent_orchestrator": {
       "passed": true,
       "task_id": "VALIDATE_SETUP_TASK",
       "coherence_score": 5.0
+    },
+    "a14_friction": {
+      "passed": true,
+      "coherence_score": 5.0,
+      "patterns_detected": 1,
+      "friction_events": 1,
+      "proposals_generated": 1,
+      "a14_status": "ACTIVE"
     }
   }
 }

@@ -30,10 +30,12 @@ from typing import Dict, Any, List
 
 # Import all system modules
 from master_brain import MasterBrain
+from master_brain_engine import MasterBrainEngine, FrictionType, FrictionSeverity
 from swarm_validator import SwarmValidator
 from divergence_map import DivergenceMap, ContradictionType
 from adaptive_mining import AdaptiveMining, CandidateStatus
 from agent_runtime_orchestrator import AgentRuntimeOrchestrator
+from axiom_guard import AxiomGuard, ALL_AXIOMS
 
 
 # Module metadata
@@ -391,6 +393,10 @@ def run_all_validations() -> Dict[str, Any]:
     results['agent_orchestrator'] = validate_agent_orchestrator()
     all_passed = all_passed and results['agent_orchestrator']['passed']
     
+    # A14 Friction Governance validation
+    results['a14_friction'] = validate_a14_friction_governance()
+    all_passed = all_passed and results['a14_friction']['passed']
+    
     # Summary
     print("\n" + "=" * 60)
     if all_passed:
@@ -412,6 +418,68 @@ def run_all_validations() -> Dict[str, Any]:
     print(f"\nValidation report saved to: validation_report.json")
     
     return report
+
+
+def validate_a14_friction_governance() -> Dict[str, Any]:
+    """
+    Validate A14 (Friction is the Medium of Governance).
+    
+    Tests:
+        - MasterBrainEngine initialization
+        - Gnosis scan for pattern detection
+        - Friction event recording
+        - Governance proposal generation
+    
+    Returns:
+        Validation results
+    """
+    print("\n--- TEST 6: A14 Friction Governance ---")
+    engine = MasterBrainEngine()
+    
+    # Test gnosis scan
+    result = engine.gnosis_scan(context={
+        "divergence_detected": True,
+        "proposal_pending": False
+    })
+    print(f"Gnosis Scan ID: {result['scan_id'][:25]}...")
+    print(f"Coherence: {result['coherence_score']:.2f}/5.0")
+    print(f"Patterns Detected: {len(result['patterns_detected'])}")
+    print(f"Friction Events: {len(result['friction_events'])}")
+    print(f"Proposals Generated: {len(result['governance_proposals_generated'])}")
+    
+    # Get A14 status
+    a14_status = engine.get_a14_status()
+    print(f"A14 Status: {a14_status['status']}")
+    print(f"A14 Statement: {a14_status['statement']}")
+    
+    # Record a manual friction event
+    friction = engine.record_friction(
+        friction_type=FrictionType.COHERENCE_DROP,
+        severity=FrictionSeverity.MEDIUM,
+        source="validate_setup",
+        description="Test friction event for A14 validation",
+        axiom_impact=["A14", "A7", "A9"]
+    )
+    print(f"Friction Event Recorded: {friction.event_id[:25]}...")
+    
+    # Verify A14 is in ALL_AXIOMS
+    a14_exists = "A14" in ALL_AXIOMS
+    print(f"A14 in Axiom Registry: {a14_exists}")
+    
+    passed = (
+        result['coherence_score'] >= 4.0 and
+        a14_status['status'] == "ACTIVE" and
+        a14_exists
+    )
+    
+    return {
+        "passed": passed,
+        "coherence_score": result['coherence_score'],
+        "patterns_detected": len(result['patterns_detected']),
+        "friction_events": len(result['friction_events']),
+        "proposals_generated": len(result['governance_proposals_generated']),
+        "a14_status": a14_status['status']
+    }
 
 
 if __name__ == "__main__":

@@ -1,0 +1,26 @@
+{
+  "candidate_id": "CAND_TEST_PLATFORM_20251229090236_20251229090236",
+  "platform_name": "TEST_PLATFORM_20251229090236",
+  "proposed_role": "COHERENCE_VALIDATOR",
+  "status": "INTEGRATED",
+  "created_utc": "2025-12-29T09:02:36.506269+00:00",
+  "completed_steps": [
+    "RECEIVE_HISTORY",
+    "RECEIVE_MASTER_PROMPT",
+    "TEST_AXIOMS",
+    "DISCOVER_CONTRIBUTION",
+    "SIGN_CHAIN",
+    "PASS_FORWARD"
+  ],
+  "current_step": null,
+  "axiom_test_results": {
+    "A1": true,
+    "A2": true,
+    "A4": true,
+    "A7": true,
+    "A9": true
+  },
+  "unique_contribution": "Validates system coherence at runtime to ensure 5/5 axiom alignment",
+  "confidence_score": 1.0,
+  "signature": "SIG-TEST_PLATFORM_20251229090236-COHERENCE_VALIDATOR"
+}

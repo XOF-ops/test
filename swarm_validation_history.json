@@ -236,6 +236,108 @@
         }
       ],
       "timestamp_utc": "2025-12-29T06:32:29.022359+00:00"
+    },
+    {
+      "total_nodes": 3,
+      "coherent_nodes": 0,
+      "average_coherence": 4.0,
+      "swarm_coherent": false,
+      "node_validations": [
+        {
+          "node_id": "PERPLEXITY_1",
+          "node_type": "UNKNOWN",
+          "axiom_results": {
+            "A1": true,
+            "A2": false,
+            "A4": true,
+            "A7": true,
+            "A9": true
+          },
+          "coherence_score": 4.0,
+          "is_coherent": false,
+          "timestamp_utc": "2025-12-29T09:02:36.504695+00:00"
+        },
+        {
+          "node_id": "GEMINI",
+          "node_type": "UNKNOWN",
+          "axiom_results": {
+            "A1": true,
+            "A2": false,
+            "A4": true,
+            "A7": true,
+            "A9": true
+          },
+          "coherence_score": 4.0,
+          "is_coherent": false,
+          "timestamp_utc": "2025-12-29T09:02:36.504728+00:00"
+        },
+        {
+          "node_id": "GROK",
+          "node_type": "UNKNOWN",
+          "axiom_results": {
+            "A1": true,
+            "A2": false,
+            "A4": true,
+            "A7": true,
+            "A9": true
+          },
+          "coherence_score": 4.0,
+          "is_coherent": false,
+          "timestamp_utc": "2025-12-29T09:02:36.504755+00:00"
+        }
+      ],
+      "timestamp_utc": "2025-12-29T09:02:36.504761+00:00"
+    },
+    {
+      "total_nodes": 3,
+      "coherent_nodes": 0,
+      "average_coherence": 4.0,
+      "swarm_coherent": false,
+      "node_validations": [
+        {
+          "node_id": "PERPLEXITY_1",
+          "node_type": "UNKNOWN",
+          "axiom_results": {
+            "A1": true,
+            "A2": false,
+            "A4": true,
+            "A7": true,
+            "A9": true
+          },
+          "coherence_score": 4.0,
+          "is_coherent": false,
+          "timestamp_utc": "2025-12-29T09:05:00.067861+00:00"
+        },
+        {
+          "node_id": "GEMINI",
+          "node_type": "UNKNOWN",
+          "axiom_results": {
+            "A1": true,
+            "A2": false,
+            "A4": true,
+            "A7": true,
+            "A9": true
+          },
+          "coherence_score": 4.0,
+          "is_coherent": false,
+          "timestamp_utc": "2025-12-29T09:05:00.067897+00:00"
+        },
+        {
+          "node_id": "GROK",
+          "node_type": "UNKNOWN",
+          "axiom_results": {
+            "A1": true,
+            "A2": false,
+            "A4": true,
+            "A7": true,
+            "A9": true
+          },
+          "coherence_score": 4.0,
+          "is_coherent": false,
+          "timestamp_utc": "2025-12-29T09:05:00.067923+00:00"
+        }
+      ],
+      "timestamp_utc": "2025-12-29T09:05:00.067927+00:00"
     }
   ]
 }

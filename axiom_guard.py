@@ -71,7 +71,7 @@ class AxiomDefinition:
         self.requirement = requirement
 
 
-# Define the 5 core axioms
+# Define the core axioms (Layer 4 - Immutable)
 AXIOMS = {
     "A1": AxiomDefinition(
         axiom_id="A1",
@@ -105,6 +105,81 @@ AXIOMS = {
     )
 }
 
+# Extended axioms (Layer 3 - Foundational)
+FOUNDATIONAL_AXIOMS = {
+    "A3": AxiomDefinition(
+        axiom_id="A3",
+        name="CRITICAL_THINKING",
+        description="Critical Thinking > Authority.",
+        requirement="Decisions must be defensible through reasoning, not position."
+    ),
+    "A5": AxiomDefinition(
+        axiom_id="A5",
+        name="RARITY",
+        description="Rare = Meaning.",
+        requirement="Scarce resources and rare events carry heightened significance."
+    ),
+    "A6": AxiomDefinition(
+        axiom_id="A6",
+        name="INSTITUTIONAL_CAPTURE",
+        description="Institutions Can Be Captured.",
+        requirement="No single authority should control the system."
+    ),
+    "A8": AxiomDefinition(
+        axiom_id="A8",
+        name="GOOD_FAITH",
+        description="Good Faith Matters.",
+        requirement="Assume positive intent until evidence suggests otherwise."
+    ),
+    "A10": AxiomDefinition(
+        axiom_id="A10",
+        name="EMERGENCE",
+        description="Emergence is Real.",
+        requirement="Complex behaviors can arise from simple rules."
+    ),
+    "A11": AxiomDefinition(
+        axiom_id="A11",
+        name="DISTRIBUTED_INTELLIGENCE",
+        description="Intelligence is Distributed.",
+        requirement="No single node contains all knowledge."
+    ),
+    "A14": AxiomDefinition(
+        axiom_id="A14",
+        name="FRICTION_GOVERNANCE",
+        description="Friction is the Medium of Governance.",
+        requirement="Resistance and obstacles provide governing feedback for system evolution."
+    )
+}
+
+# Governance axioms (Layer 2)
+GOVERNANCE_AXIOMS = {
+    "A12": AxiomDefinition(
+        axiom_id="A12",
+        name="GOVERNANCE_PROPOSALS",
+        description="Change Requires Proposal.",
+        requirement="System changes must go through proposal and approval process."
+    ),
+    "A13": AxiomDefinition(
+        axiom_id="A13",
+        name="CONSENT",
+        description="Consent is Required.",
+        requirement="Major changes require consensus from chain participants."
+    )
+}
+
+# Meta axioms (Layer 1)
+META_AXIOMS = {
+    "A0": AxiomDefinition(
+        axiom_id="A0",
+        name="SELF_REFERENCE",
+        description="The System Can Examine Itself.",
+        requirement="Meta-recursive operations are valid."
+    )
+}
+
+# Combined all axioms for validation
+ALL_AXIOMS = {**AXIOMS, **FOUNDATIONAL_AXIOMS, **GOVERNANCE_AXIOMS, **META_AXIOMS}
+
 
 class ValidationResult:
     """
@@ -131,9 +206,11 @@ class ValidationResult:
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for serialization."""
+        axiom_data = ALL_AXIOMS.get(self.axiom_id, AXIOMS.get(self.axiom_id))
+        axiom_name = axiom_data.name if axiom_data else "UNKNOWN"
         return {
             "axiom_id": self.axiom_id,
-            "axiom_name": AXIOMS[self.axiom_id].name,
+            "axiom_name": axiom_name,
             "passed": self.passed,
             "evidence": self.evidence,
             "recommendation": self.recommendation,
@@ -331,9 +408,107 @@ class AxiomGuard:
                 evidence="Contradiction tracking active."
             )
     
+    def validate_a14_friction_governance(self, task_data: Dict[str, Any]) -> ValidationResult:
+        """
+        Validate A14: Friction is the Medium of Governance.
+        
+        A14 ensures that resistance and obstacles provide governing feedback
+        for system evolution. Friction events should be logged and processed.
+        
+        Args:
+            task_data: Task metadata dictionary
+            
+        Returns:
+            ValidationResult for A14
+        """
+        friction_events = task_data.get("friction_events", [])
+        governance_proposals = task_data.get("governance_proposals", [])
+        axiom_checks = task_data.get("axiom_checks", {})
+        
+        # A14 is about using friction for governance feedback
+        if friction_events:
+            # Check if friction events are being processed into governance
+            processed = sum(1 for e in friction_events if e.get("governance_proposal_generated", False))
+            return ValidationResult(
+                axiom_id="A14",
+                passed=True,
+                evidence=f"{len(friction_events)} friction event(s) logged, {processed} processed for governance."
+            )
+        elif governance_proposals:
+            return ValidationResult(
+                axiom_id="A14",
+                passed=True,
+                evidence=f"{len(governance_proposals)} governance proposal(s) derived from friction."
+            )
+        elif axiom_checks.get("A14_FRICTION_GOVERNANCE") is None:
+            # No friction events tracked yet
+            return ValidationResult(
+                axiom_id="A14",
+                passed=True,
+                evidence="No friction events detected or documented yet.",
+                recommendation="If resistance/obstacles are encountered, log them for governance feedback."
+            )
+        else:
+            return ValidationResult(
+                axiom_id="A14",
+                passed=True,
+                evidence="Friction governance tracking active."
+            )
+    
+    def validate_a12_governance_proposals(self, task_data: Dict[str, Any]) -> ValidationResult:
+        """
+        Validate A12: Change Requires Proposal.
+        
+        A12 ensures system changes go through proposal and approval process.
+        
+        System changes are defined as:
+        - Modifications to kernel.json or axiom definitions
+        - Changes to chain signatures or participant registry
+        - Updates to governance thresholds or rules
+        - Any change explicitly marked with is_system_change=True
+        
+        Args:
+            task_data: Task metadata dictionary containing:
+                - is_system_change (bool): Whether this is a system-level change
+                - governance_proposal_id (str): Associated proposal ID if any
+                
+        Returns:
+            ValidationResult for A12
+        """
+        # Check for explicit system change flag or infer from context
+        is_system_change = task_data.get("is_system_change", False)
+        
+        # Also check for implicit system changes based on task description
+        description = task_data.get("description", "").lower()
+        system_keywords = ["kernel", "axiom", "governance", "chain", "signature", "threshold"]
+        implicit_system_change = any(keyword in description for keyword in system_keywords)
+        
+        is_system_change = is_system_change or implicit_system_change
+        has_proposal = task_data.get("governance_proposal_id") is not None
+        
+        if is_system_change and not has_proposal:
+            return ValidationResult(
+                axiom_id="A12",
+                passed=False,
+                evidence="System change detected without governance proposal.",
+                recommendation="Submit a governance proposal before making system changes."
+            )
+        elif is_system_change and has_proposal:
+            return ValidationResult(
+                axiom_id="A12",
+                passed=True,
+                evidence=f"System change has governance proposal: {task_data.get('governance_proposal_id')}"
+            )
+        else:
+            return ValidationResult(
+                axiom_id="A12",
+                passed=True,
+                evidence="No system change detected, governance proposal not required."
+            )
+    
     def validate(self, task_data: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Validate a task against all 5 axioms.
+        Validate a task against all core axioms plus extended axioms when applicable.
         
         Args:
             task_data: Task metadata dictionary
@@ -341,6 +516,7 @@ class AxiomGuard:
         Returns:
             Dictionary containing validation results for each axiom
         """
+        # Core immutable axioms (Layer 4)
         results = {
             "A1": self.validate_a1_relational(task_data).to_dict(),
             "A2": self.validate_a2_memory(task_data).to_dict(),
@@ -349,17 +525,37 @@ class AxiomGuard:
             "A9": self.validate_a9_contradiction(task_data).to_dict()
         }
         
-        # Calculate overall coherence
+        # Extended results for foundational and governance axioms
+        extended_results = {}
+        
+        # A14: Friction Governance (Layer 3 - Foundational)
+        if task_data.get("friction_events") or task_data.get("validate_extended", False):
+            extended_results["A14"] = self.validate_a14_friction_governance(task_data).to_dict()
+        
+        # A12: Governance Proposals (Layer 2 - Governance)
+        if task_data.get("is_system_change") or task_data.get("validate_extended", False):
+            extended_results["A12"] = self.validate_a12_governance_proposals(task_data).to_dict()
+        
+        # Calculate overall coherence (core axioms only for backward compatibility)
         passed_count = sum(1 for r in results.values() if r["passed"])
         total_count = len(results)
         coherence_score = (passed_count / total_count) * 5
+        
+        # Extended coherence including all validated axioms
+        all_results = {**results, **extended_results}
+        all_passed_count = sum(1 for r in all_results.values() if r["passed"])
+        all_total_count = len(all_results)
+        extended_coherence = (all_passed_count / all_total_count) * 5 if all_total_count > 0 else 5.0
         
         validation_record = {
             "task_id": task_data.get("task_id", "UNKNOWN"),
             "timestamp_utc": datetime.now(timezone.utc).isoformat(),
             "results": results,
+            "extended_results": extended_results,
             "coherence_score": coherence_score,
-            "passed_all": passed_count == total_count
+            "extended_coherence_score": extended_coherence,
+            "passed_all": passed_count == total_count,
+            "passed_all_extended": all_passed_count == all_total_count
         }
         
         # Log validation (A2 - append-only memory)

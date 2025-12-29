@@ -39,6 +39,7 @@ import threading
 
 # Import core modules
 from master_brain import MasterBrain
+from master_brain_engine import MasterBrainEngine, FrictionType, FrictionSeverity
 from swarm_validator import SwarmValidator, NodeValidation
 from divergence_map import DivergenceMap, ContradictionType
 from adaptive_mining import AdaptiveMining
@@ -200,6 +201,7 @@ class APIHandler(BaseHTTPRequestHandler):
     
     # Class-level services (initialized once)
     brain = None
+    engine = None  # MasterBrainEngine for A14/gnosis
     swarm_validator = None
     divergence_map = None
     adaptive_mining = None
@@ -212,6 +214,7 @@ class APIHandler(BaseHTTPRequestHandler):
     def initialize_services(cls, base_path: str = "."):
         """Initialize all services."""
         cls.brain = MasterBrain(base_path)
+        cls.engine = MasterBrainEngine(base_path)
         cls.swarm_validator = SwarmValidator(base_path)
         cls.divergence_map = DivergenceMap(base_path)
         cls.adaptive_mining = AdaptiveMining(base_path)
@@ -270,6 +273,16 @@ class APIHandler(BaseHTTPRequestHandler):
             self._handle_thresholds_get()
         elif path == '/api/health':
             self._handle_health()
+        elif path == '/api/a14':
+            self._handle_a14_get()
+        elif path == '/api/kernel':
+            self._handle_kernel_get()
+        elif path == '/api/gnosis':
+            self._handle_gnosis_get()
+        elif path == '/api/friction':
+            self._handle_friction_get()
+        elif path == '/api/governance':
+            self._handle_governance_get()
         else:
             self._send_json_response({"error": "Not found"}, 404)
     
@@ -295,6 +308,12 @@ class APIHandler(BaseHTTPRequestHandler):
             self._handle_thresholds_evaluate(body)
         elif path == '/api/friction-mining':
             self._handle_friction_mining(body)
+        elif path == '/api/gnosis/scan':
+            self._handle_gnosis_scan(body)
+        elif path == '/api/friction/record':
+            self._handle_friction_record(body)
+        elif path == '/api/governance/propose':
+            self._handle_governance_propose(body)
         else:
             self._send_json_response({"error": "Not found"}, 404)
     
@@ -745,6 +764,185 @@ class APIHandler(BaseHTTPRequestHandler):
         with open(log_path, 'w') as f:
             json.dump(data, f, indent=2)
     
+    # === /api/a14 - A14 Friction Governance ===
+    
+    def _handle_a14_get(self):
+        """
+        GET /api/a14 - Get A14 (Friction is the Medium of Governance) status.
+        
+        Returns the current status of A14 axiom and friction metrics.
+        """
+        a14_status = self.engine.get_a14_status()
+        self._send_json_response({
+            "endpoint": "/api/a14",
+            "method": "GET",
+            "a14": a14_status,
+            "timestamp_utc": datetime.now(timezone.utc).isoformat()
+        })
+    
+    # === /api/kernel - Kernel Architecture ===
+    
+    def _handle_kernel_get(self):
+        """
+        GET /api/kernel - Get the full kernel.json architecture.
+        
+        Returns the complete axiom architecture with all layers.
+        """
+        kernel = self.engine.kernel
+        self._send_json_response({
+            "endpoint": "/api/kernel",
+            "method": "GET",
+            "kernel": kernel,
+            "timestamp_utc": datetime.now(timezone.utc).isoformat()
+        })
+    
+    # === /api/gnosis - Gnosis Scan ===
+    
+    def _handle_gnosis_get(self):
+        """
+        GET /api/gnosis - Get gnosis scan history.
+        
+        Returns the history of gnosis scans performed.
+        """
+        self._send_json_response({
+            "endpoint": "/api/gnosis",
+            "method": "GET",
+            "history": self.engine.gnosis_history,
+            "scan_count": len(self.engine.gnosis_history),
+            "timestamp_utc": datetime.now(timezone.utc).isoformat()
+        })
+    
+    def _handle_gnosis_scan(self, body: Dict[str, Any]):
+        """
+        POST /api/gnosis/scan - Perform a gnosis scan.
+        
+        Body:
+        {
+            "context": {
+                "divergence_detected": false,
+                "proposal_pending": false,
+                "threshold_adjusted": false,
+                "contradiction_unresolved": false
+            }
+        }
+        """
+        context = body.get("context", {})
+        result = self.engine.gnosis_scan(context)
+        
+        self._send_json_response({
+            "endpoint": "/api/gnosis/scan",
+            "method": "POST",
+            "result": result,
+            "timestamp_utc": datetime.now(timezone.utc).isoformat()
+        })
+    
+    # === /api/friction - Friction Events ===
+    
+    def _handle_friction_get(self):
+        """
+        GET /api/friction - Get friction events from engine.
+        
+        Returns all friction events tracked by the engine.
+        """
+        events = [e.to_dict() for e in self.engine.friction_events]
+        self._send_json_response({
+            "endpoint": "/api/friction",
+            "method": "GET",
+            "events": events,
+            "count": len(events),
+            "timestamp_utc": datetime.now(timezone.utc).isoformat()
+        })
+    
+    def _handle_friction_record(self, body: Dict[str, Any]):
+        """
+        POST /api/friction/record - Record a friction event.
+        
+        Body:
+        {
+            "friction_type": "DIVERGENCE|COHERENCE_DROP|CONTRADICTION|THRESHOLD_BREACH|CANDIDATE_REJECTION|GOVERNANCE_CONFLICT",
+            "severity": "LOW|MEDIUM|HIGH|CRITICAL",
+            "source": "...",
+            "description": "...",
+            "axiom_impact": ["A14", "A7", ...]
+        }
+        """
+        friction_type_str = body.get("friction_type", "DIVERGENCE")
+        severity_str = body.get("severity", "MEDIUM")
+        source = body.get("source", "api")
+        description = body.get("description", "Friction recorded via API")
+        axiom_impact = body.get("axiom_impact", ["A14"])
+        
+        # Convert strings to enums
+        try:
+            friction_type = FrictionType[friction_type_str]
+        except KeyError:
+            friction_type = FrictionType.DIVERGENCE
+        
+        try:
+            severity = FrictionSeverity[severity_str]
+        except KeyError:
+            severity = FrictionSeverity.MEDIUM
+        
+        event = self.engine.record_friction(
+            friction_type=friction_type,
+            severity=severity,
+            source=source,
+            description=description,
+            axiom_impact=axiom_impact
+        )
+        
+        self._send_json_response({
+            "endpoint": "/api/friction/record",
+            "method": "POST",
+            "event": event.to_dict(),
+            "timestamp_utc": datetime.now(timezone.utc).isoformat()
+        })
+    
+    # === /api/governance - Governance Proposals ===
+    
+    def _handle_governance_get(self):
+        """
+        GET /api/governance - Get governance proposals.
+        
+        Returns all governance proposals generated from friction and patterns.
+        """
+        proposals = [p.to_dict() for p in self.engine.governance_proposals]
+        self._send_json_response({
+            "endpoint": "/api/governance",
+            "method": "GET",
+            "proposals": proposals,
+            "count": len(proposals),
+            "pending": sum(1 for p in self.engine.governance_proposals if p.status == "PENDING"),
+            "timestamp_utc": datetime.now(timezone.utc).isoformat()
+        })
+    
+    def _handle_governance_propose(self, body: Dict[str, Any]):
+        """
+        POST /api/governance/propose - Trigger a gnosis scan to generate proposals.
+        
+        This performs a gnosis scan with the provided context and returns
+        any governance proposals generated.
+        
+        Body:
+        {
+            "context": {
+                "divergence_detected": true,
+                ...
+            }
+        }
+        """
+        context = body.get("context", {"divergence_detected": True})
+        result = self.engine.gnosis_scan(context)
+        
+        self._send_json_response({
+            "endpoint": "/api/governance/propose",
+            "method": "POST",
+            "proposals_generated": result.get("governance_proposals_generated", []),
+            "friction_events": result.get("friction_events", []),
+            "coherence_score": result.get("coherence_score", 5.0),
+            "timestamp_utc": datetime.now(timezone.utc).isoformat()
+        })
+    
     # === /api/health ===
     
     def _handle_health(self):
@@ -789,6 +987,15 @@ def run_server(host: str = "0.0.0.0", port: int = 8080, base_path: str = "."):
     print("  GET  /api/thresholds       - Autonomy thresholds")
     print("  POST /api/thresholds/evaluate - Evaluate action")
     print("  POST /api/friction-mining  - Trigger friction mining")
+    print("  --- A14 Friction Governance ---")
+    print("  GET  /api/a14              - A14 axiom status")
+    print("  GET  /api/kernel           - Full kernel architecture")
+    print("  GET  /api/gnosis           - Gnosis scan history")
+    print("  POST /api/gnosis/scan      - Perform gnosis scan")
+    print("  GET  /api/friction         - Friction events")
+    print("  POST /api/friction/record  - Record friction event")
+    print("  GET  /api/governance       - Governance proposals")
+    print("  POST /api/governance/propose - Generate proposals from friction")
     server.serve_forever()
 
 

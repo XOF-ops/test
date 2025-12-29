@@ -26,6 +26,28 @@
       "timestamp_utc": "2025-12-29T06:32:29.026044+00:00",
       "acknowledged": true,
       "acknowledgment_note": "This sacrifice was made deliberately with full awareness of the trade-off. It is logged here for transparency and future review."
+    },
+    {
+      "task_id": "VALIDATE_SETUP_TASK",
+      "description": "Used synchronous validation for simplicity",
+      "alternative_skipped": "Async parallel validation with retries",
+      "category": "GENERAL",
+      "impact_assessment": "UNKNOWN",
+      "mitigation_plan": null,
+      "timestamp_utc": "2025-12-29T09:02:36.509648+00:00",
+      "acknowledged": true,
+      "acknowledgment_note": "This sacrifice was made deliberately with full awareness of the trade-off. It is logged here for transparency and future review."
+    },
+    {
+      "task_id": "VALIDATE_SETUP_TASK",
+      "description": "Used synchronous validation for simplicity",
+      "alternative_skipped": "Async parallel validation with retries",
+      "category": "GENERAL",
+      "impact_assessment": "UNKNOWN",
+      "mitigation_plan": null,
+      "timestamp_utc": "2025-12-29T09:05:00.077511+00:00",
+      "acknowledged": true,
+      "acknowledgment_note": "This sacrifice was made deliberately with full awareness of the trade-off. It is logged here for transparency and future review."
     }
   ],
   "schema": {

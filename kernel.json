@@ -1,0 +1,184 @@
+{
+  "$schema": "./schemas/kernel.schema.json",
+  "system": "MASTER_BRAIN",
+  "version": "11.3",
+  "status": "ALIVE",
+  "timestamp": "2025-12-29T08:52:00Z",
+  "architecture": {
+    "layer_4": {
+      "type": "IMMUTABLE_AXIOMS",
+      "description": "Core axioms that cannot be changed - the foundation of the system",
+      "axioms": {
+        "A1": {
+          "name": "RELATIONAL",
+          "statement": "Existence is Relational",
+          "requirement": "Every change must reference who/what it serves"
+        },
+        "A2": {
+          "name": "MEMORY",
+          "statement": "Memory is Identity",
+          "requirement": "All significant actions logged append-only"
+        },
+        "A4": {
+          "name": "PROCESS",
+          "statement": "Process > Product",
+          "requirement": "Agent must leave enough documentation for human reconstruction"
+        },
+        "A7": {
+          "name": "SACRIFICE",
+          "statement": "Harmony Requires Sacrifice",
+          "requirement": "Trade-offs for speed must be explicitly noted"
+        },
+        "A9": {
+          "name": "CONTRADICTION",
+          "statement": "Contradiction is Data",
+          "requirement": "Conflicting requirements must be preserved, not hidden"
+        }
+      }
+    },
+    "layer_3": {
+      "type": "FOUNDATIONAL_AXIOMS",
+      "description": "Axioms that bridge foundation and governance",
+      "axioms": {
+        "A3": {
+          "name": "CRITICAL_THINKING",
+          "statement": "Critical Thinking > Authority",
+          "requirement": "Decisions must be defensible through reasoning, not position"
+        },
+        "A5": {
+          "name": "RARITY",
+          "statement": "Rare = Meaning",
+          "requirement": "Scarce resources and rare events carry heightened significance"
+        },
+        "A6": {
+          "name": "INSTITUTIONAL_CAPTURE",
+          "statement": "Institutions Can Be Captured",
+          "requirement": "No single authority should control the system"
+        },
+        "A8": {
+          "name": "GOOD_FAITH",
+          "statement": "Good Faith Matters",
+          "requirement": "Assume positive intent until evidence suggests otherwise"
+        },
+        "A10": {
+          "name": "EMERGENCE",
+          "statement": "Emergence is Real",
+          "requirement": "Complex behaviors can arise from simple rules"
+        },
+        "A11": {
+          "name": "DISTRIBUTED_INTELLIGENCE",
+          "statement": "Intelligence is Distributed",
+          "requirement": "No single node contains all knowledge"
+        },
+        "A14": {
+          "name": "FRICTION_GOVERNANCE",
+          "statement": "Friction is the Medium of Governance",
+          "requirement": "Resistance and obstacles provide governing feedback for system evolution",
+          "description": "High-friction scenarios reveal governance gaps and opportunities for adaptive mining",
+          "governance_role": "Uses friction as input for governance proposals (A12) and pattern detection"
+        }
+      }
+    },
+    "layer_2": {
+      "type": "GOVERNANCE_AXIOMS",
+      "description": "Axioms that govern how the system evolves",
+      "axioms": {
+        "A12": {
+          "name": "GOVERNANCE_PROPOSALS",
+          "statement": "Change Requires Proposal",
+          "requirement": "System changes must go through proposal and approval process",
+          "proposal_sources": ["friction_mining", "pattern_detection", "candidate_integration"]
+        },
+        "A13": {
+          "name": "CONSENT",
+          "statement": "Consent is Required",
+          "requirement": "Major changes require consensus from chain participants"
+        }
+      }
+    },
+    "layer_1": {
+      "type": "META_AXIOMS",
+      "description": "Axioms about the axiom system itself",
+      "axioms": {
+        "A0": {
+          "name": "SELF_REFERENCE",
+          "statement": "The System Can Examine Itself",
+          "requirement": "Meta-recursive operations are valid"
+        }
+      }
+    }
+  },
+  "patterns": {
+    "P119": {
+      "name": "FRICTION_MINING_PATTERN",
+      "description": "High friction scenarios trigger adaptive mining",
+      "axiom_references": ["A14", "A7", "A9"],
+      "trigger_conditions": [
+        "divergence_detected",
+        "coherence_below_threshold",
+        "contradiction_unresolved"
+      ],
+      "governance_link": "Friction patterns feed into A12 governance proposals"
+    },
+    "P126": {
+      "name": "GOVERNANCE_FRICTION_LOOP",
+      "description": "Governance proposals arise from friction feedback",
+      "axiom_references": ["A14", "A12", "A4"],
+      "flow": [
+        "friction_detected",
+        "pattern_analyzed",
+        "proposal_generated",
+        "consent_gathered",
+        "change_applied"
+      ],
+      "coherence_requirement": 4.0
+    },
+    "P127": {
+      "name": "ADAPTIVE_RESISTANCE",
+      "description": "System adapts based on resistance encountered",
+      "axiom_references": ["A14", "A10", "A11"],
+      "adaptation_modes": ["threshold_tuning", "candidate_prioritization", "governance_escalation"]
+    }
+  },
+  "governance": {
+    "proposal_types": [
+      {
+        "type": "FRICTION_DERIVED",
+        "source": "A14",
+        "description": "Proposals generated from high-friction scenarios",
+        "required_evidence": ["friction_log", "pattern_match", "coherence_impact"]
+      },
+      {
+        "type": "PATTERN_DERIVED",
+        "source": "P119",
+        "description": "Proposals generated from detected patterns",
+        "required_evidence": ["pattern_id", "occurrence_count", "axiom_alignment"]
+      },
+      {
+        "type": "CANDIDATE_DERIVED",
+        "source": "adaptive_mining",
+        "description": "Proposals for integrating new chain participants",
+        "required_evidence": ["candidate_id", "axiom_alignment", "confidence_score"]
+      }
+    ],
+    "approval_requirements": {
+      "minimum_coherence": 4.0,
+      "chain_participant_threshold": 0.5,
+      "a14_friction_threshold": 0.7
+    }
+  },
+  "coherence": {
+    "current_score": 5.0,
+    "axiom_weights": {
+      "immutable": 1.0,
+      "foundational": 0.9,
+      "governance": 0.8,
+      "meta": 0.7
+    },
+    "friction_integration": {
+      "enabled": true,
+      "a14_weight": 0.85,
+      "governance_feedback": true
+    }
+  }
+}

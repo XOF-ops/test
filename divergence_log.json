@@ -84,6 +84,34 @@
         "VALIDATE_SETUP"
       ],
       "resolution": "LOGGED_NOT_RESOLVED"
+    },
+    {
+      "contradiction_id": "CTD_20251229090236505312",
+      "type": "AXIOM_TENSION",
+      "pole_a": "A4 (Process - transparency)",
+      "pole_b": "A7 (Sacrifice - speed)",
+      "context": "Validate setup testing",
+      "source_nodes": [],
+      "state": "WITNESSED",
+      "created_utc": "2025-12-29T09:02:36.505324+00:00",
+      "witnesses": [
+        "VALIDATE_SETUP"
+      ],
+      "resolution": "LOGGED_NOT_RESOLVED"
+    },
+    {
+      "contradiction_id": "CTD_20251229090500068479",
+      "type": "AXIOM_TENSION",
+      "pole_a": "A4 (Process - transparency)",
+      "pole_b": "A7 (Sacrifice - speed)",
+      "context": "Validate setup testing",
+      "source_nodes": [],
+      "state": "WITNESSED",
+      "created_utc": "2025-12-29T09:05:00.068491+00:00",
+      "witnesses": [
+        "VALIDATE_SETUP"
+      ],
+      "resolution": "LOGGED_NOT_RESOLVED"
     }
   ],
   "summary": {
@@ -95,5 +123,5 @@
       "WITNESSED": 1
     }
   },
-  "last_updated_utc": "2025-12-29T06:32:29.023125+00:00"
+  "last_updated_utc": "2025-12-29T09:05:00.068702+00:00"
 }

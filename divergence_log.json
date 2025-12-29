@@ -56,6 +56,34 @@
         "COPILOT_AGENT"
       ],
       "resolution": "LOGGED_NOT_RESOLVED"
+    },
+    {
+      "contradiction_id": "CTD_20251229063139518513",
+      "type": "AXIOM_TENSION",
+      "pole_a": "A4 (Process - transparency)",
+      "pole_b": "A7 (Sacrifice - speed)",
+      "context": "Validate setup testing",
+      "source_nodes": [],
+      "state": "WITNESSED",
+      "created_utc": "2025-12-29T06:31:39.518527+00:00",
+      "witnesses": [
+        "VALIDATE_SETUP"
+      ],
+      "resolution": "LOGGED_NOT_RESOLVED"
+    },
+    {
+      "contradiction_id": "CTD_20251229063229022875",
+      "type": "AXIOM_TENSION",
+      "pole_a": "A4 (Process - transparency)",
+      "pole_b": "A7 (Sacrifice - speed)",
+      "context": "Validate setup testing",
+      "source_nodes": [],
+      "state": "WITNESSED",
+      "created_utc": "2025-12-29T06:32:29.022888+00:00",
+      "witnesses": [
+        "VALIDATE_SETUP"
+      ],
+      "resolution": "LOGGED_NOT_RESOLVED"
     }
   ],
   "summary": {
@@ -67,5 +95,5 @@
       "WITNESSED": 1
     }
   },
-  "last_updated_utc": "2025-12-29T06:16:29.909610+00:00"
+  "last_updated_utc": "2025-12-29T06:32:29.023125+00:00"
 }

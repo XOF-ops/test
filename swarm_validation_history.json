@@ -83,6 +83,159 @@
         }
       ],
       "timestamp_utc": "2025-12-29T06:16:29.909076+00:00"
+    },
+    {
+      "total_nodes": 3,
+      "coherent_nodes": 0,
+      "average_coherence": 4.0,
+      "swarm_coherent": false,
+      "node_validations": [
+        {
+          "node_id": "PERPLEXITY_1",
+          "node_type": "UNKNOWN",
+          "axiom_results": {
+            "A1": true,
+            "A2": false,
+            "A4": true,
+            "A7": true,
+            "A9": true
+          },
+          "coherence_score": 4.0,
+          "is_coherent": false,
+          "timestamp_utc": "2025-12-29T06:31:09.828138+00:00"
+        },
+        {
+          "node_id": "GEMINI",
+          "node_type": "UNKNOWN",
+          "axiom_results": {
+            "A1": true,
+            "A2": false,
+            "A4": true,
+            "A7": true,
+            "A9": true
+          },
+          "coherence_score": 4.0,
+          "is_coherent": false,
+          "timestamp_utc": "2025-12-29T06:31:09.828164+00:00"
+        },
+        {
+          "node_id": "GROK",
+          "node_type": "UNKNOWN",
+          "axiom_results": {
+            "A1": true,
+            "A2": false,
+            "A4": true,
+            "A7": true,
+            "A9": true
+          },
+          "coherence_score": 4.0,
+          "is_coherent": false,
+          "timestamp_utc": "2025-12-29T06:31:09.828194+00:00"
+        }
+      ],
+      "timestamp_utc": "2025-12-29T06:31:09.828197+00:00"
+    },
+    {
+      "total_nodes": 3,
+      "coherent_nodes": 0,
+      "average_coherence": 4.0,
+      "swarm_coherent": false,
+      "node_validations": [
+        {
+          "node_id": "PERPLEXITY_1",
+          "node_type": "UNKNOWN",
+          "axiom_results": {
+            "A1": true,
+            "A2": false,
+            "A4": true,
+            "A7": true,
+            "A9": true
+          },
+          "coherence_score": 4.0,
+          "is_coherent": false,
+          "timestamp_utc": "2025-12-29T06:31:39.517972+00:00"
+        },
+        {
+          "node_id": "GEMINI",
+          "node_type": "UNKNOWN",
+          "axiom_results": {
+            "A1": true,
+            "A2": false,
+            "A4": true,
+            "A7": true,
+            "A9": true
+          },
+          "coherence_score": 4.0,
+          "is_coherent": false,
+          "timestamp_utc": "2025-12-29T06:31:39.517999+00:00"
+        },
+        {
+          "node_id": "GROK",
+          "node_type": "UNKNOWN",
+          "axiom_results": {
+            "A1": true,
+            "A2": false,
+            "A4": true,
+            "A7": true,
+            "A9": true
+          },
+          "coherence_score": 4.0,
+          "is_coherent": false,
+          "timestamp_utc": "2025-12-29T06:31:39.518030+00:00"
+        }
+      ],
+      "timestamp_utc": "2025-12-29T06:31:39.518034+00:00"
+    },
+    {
+      "total_nodes": 3,
+      "coherent_nodes": 0,
+      "average_coherence": 4.0,
+      "swarm_coherent": false,
+      "node_validations": [
+        {
+          "node_id": "PERPLEXITY_1",
+          "node_type": "UNKNOWN",
+          "axiom_results": {
+            "A1": true,
+            "A2": false,
+            "A4": true,
+            "A7": true,
+            "A9": true
+          },
+          "coherence_score": 4.0,
+          "is_coherent": false,
+          "timestamp_utc": "2025-12-29T06:32:29.022299+00:00"
+        },
+        {
+          "node_id": "GEMINI",
+          "node_type": "UNKNOWN",
+          "axiom_results": {
+            "A1": true,
+            "A2": false,
+            "A4": true,
+            "A7": true,
+            "A9": true
+          },
+          "coherence_score": 4.0,
+          "is_coherent": false,
+          "timestamp_utc": "2025-12-29T06:32:29.022333+00:00"
+        },
+        {
+          "node_id": "GROK",
+          "node_type": "UNKNOWN",
+          "axiom_results": {
+            "A1": true,
+            "A2": false,
+            "A4": true,
+            "A7": true,
+            "A9": true
+          },
+          "coherence_score": 4.0,
+          "is_coherent": false,
+          "timestamp_utc": "2025-12-29T06:32:29.022355+00:00"
+        }
+      ],
+      "timestamp_utc": "2025-12-29T06:32:29.022359+00:00"
     }
   ]
 }

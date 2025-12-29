@@ -1,0 +1,90 @@
+{
+  "metadata": {
+    "origin_model": "GITHUB_COPILOT_AGENT",
+    "human_initiator": "USER_RUNTIME_BRIDGE",
+    "timestamp_utc": "2025-12-29T06:28:00Z",
+    "axioms_considered": [
+      "A1",
+      "A2",
+      "A4",
+      "A7",
+      "A9"
+    ],
+    "sacrifice_noted": "None - implementing full validation",
+    "contradictions_logged": [],
+    "coherence_self_score": 5.0
+  },
+  "timestamp_utc": "2025-12-29T09:05:00.080104+00:00",
+  "all_passed": false,
+  "results": {
+    "master_brain": {
+      "passed": true,
+      "coherence_score": 5.0,
+      "kernel_intact": true,
+      "chain_length": 5
+    },
+    "swarm_validator": {
+      "passed": false,
+      "is_coherent": false,
+      "average_coherence": 4.0,
+      "nodes_validated": 3,
+      "divergences": 0,
+      "history_entries": 1
+    },
+    "divergence_map": {
+      "passed": true,
+      "new_contradiction_id": "CTD_20251229090500068479",
+      "total_contradictions": 1,
+      "lifecycle_reviewed": {
+        "contradiction_id": "CTD_20251229061629909388",
+        "type": "AXIOM_TENSION",
+        "pole_a": "A4 (Process)",
+        "pole_b": "A7 (Sacrifice)",
+        "context": "Test tension",
+        "source_nodes": [],
+        "state": "WITNESSED",
+        "created_utc": "2025-12-29T06:16:29.909401+00:00",
+        "witnesses": [
+          "COPILOT_AGENT"
+        ],
+        "resolution": "LOGGED_NOT_RESOLVED"
+      }
+    },
+    "adaptive_mining": {
+      "passed": true,
+      "candidate_id": "CAND_TEST_PLATFORM_20251229090500_20251229090500",
+      "status": "INTEGRATED",
+      "signature": "SIG-TEST_PLATFORM_20251229090500-COHERENCE_VALIDATOR",
+      "saved_to": "./candidates/CAND_TEST_PLATFORM_20251229090500_20251229090500.json",
+      "file_exists": true,
+      "metrics": {
+        "total_candidates": 1,
+        "pending": 0,
+        "evaluating": 0,
+        "accepted": 0,
+        "integrated": 1,
+        "rejected": 0,
+        "integrated_platforms": [
+          "TEST_PLATFORM_20251229063139",
+          "TEST_PLATFORM_20251229063229",
+          "TEST_PLATFORM_20251229090236",
+          "TEST_PLATFORM_20251229090500"
+        ],
+        "timestamp_utc": "2025-12-29T09:05:00.077329+00:00"
+      }
+    },
+    "agent_orchestrator": {
+      "passed": true,
+      "task_id": "VALIDATE_SETUP_TASK",
+      "coherence_score": 5.0
+    },
+    "a14_friction": {
+      "passed": true,
+      "coherence_score": 5.0,
+      "patterns_detected": 1,
+      "friction_events": 1,
+      "proposals_generated": 1,
+      "a14_status": "ACTIVE"
+    }
+  }
+}

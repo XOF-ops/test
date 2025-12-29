@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "origin_model": "GITHUB_COPILOT_AGENT",
+    "human_initiator": "USER_RUNTIME_BRIDGE",
+    "timestamp_utc": "2025-12-29T04:17:20Z",
+    "axioms_considered": ["A1", "A2", "A4", "A7", "A9"],
+    "sacrifice_noted": "None for initial log creation.",
+    "contradictions_logged": [],
+    "coherence_self_score": 5.0,
+    "purpose": "This file stores all contradictions found during agent runtime. Per A9 (Contradiction) and A2 (Memory), contradictions are preserved rather than silently resolved, and this log is append-only with no destructive overwrites."
+  },
+  "contradictions": [],
+  "schema": {
+    "contradiction_entry": {
+      "task_id": "string - ID of the task where contradiction was found",
+      "conflict_a": "string - First conflicting requirement",
+      "conflict_b": "string - Second conflicting requirement",
+      "timestamp_utc": "string - ISO timestamp of when contradiction was logged",
+      "resolution": "string - Current status (LOGGED_NOT_RESOLVED, RESOLVED_BY_HUMAN, etc.)",
+      "resolution_notes": "string (optional) - Notes on how/if the contradiction was resolved",
+      "resolved_by": "string (optional) - Who resolved the contradiction",
+      "resolved_at": "string (optional) - When the contradiction was resolved"
+    }
+  },
+  "usage_notes": [
+    "This log is append-only. Do not delete or modify existing entries.",
+    "When a contradiction is found, add a new entry to the 'contradictions' array.",
+    "When a contradiction is resolved by a human, update the resolution field but preserve the original conflict.",
+    "This log exists per A9: 'If the agent finds conflicting requirements, it must log them instead of overwriting or silently resolving them.'"
+  ]
+}

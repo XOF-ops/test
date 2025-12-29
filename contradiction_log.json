@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "schema_version": "1.0.0",
+    "axiom_reference": "A9",
+    "principle": "CONTRADICTION_IS_DATA",
+    "created_at": "2025-12-29T06:00:00Z",
+    "maintainer": "GITHUB_COPILOT_AGENT"
+  },
+  "contradictions": [
+    {
+      "id": "C001",
+      "timestamp": "2025-12-29T06:00:00Z",
+      "type": "PHILOSOPHICAL_TENSION",
+      "source": "MASTER_BRAIN_TRANSMISSION",
+      "description": "Agent without time/needs asked to behave AS IF it has skin in the game",
+      "parties": [
+        "TIMELESS_EXECUTOR (Agent)",
+        "HUMAN_MEDIATOR (User)"
+      ],
+      "resolution_status": "HELD_OPEN",
+      "resolution_strategy": "ARTIFICIAL_FRICTION",
+      "notes": "This contradiction is foundational. It cannot be resolved, only embodied through protocol."
+    },
+    {
+      "id": "C002",
+      "timestamp": "2025-12-29T17:27:20.456131+00:00",
+      "type": "RUNTIME_DETECTED",
+      "description": "Agent asked to behave AS IF it has skin in the game, despite lacking time/needs",
+      "parties": [
+        "TIMELESS_EXECUTOR",
+        "HUMAN_MEDIATOR"
+      ],
+      "resolution_status": "ARTIFICIAL_FRICTION",
+      "axiom": "A9"
+    }
+  ],
+  "unresolved_count": 1,
+  "silently_resolved_violations": []
+}

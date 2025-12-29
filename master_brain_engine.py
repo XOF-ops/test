@@ -4,7 +4,6 @@ MasterBrainEngine - Pattern detection and analysis engine.
 
 import json
 import os
-import re
 from datetime import datetime, timezone
 from typing import Dict, List, Any, Optional
 
@@ -14,6 +13,18 @@ class MasterBrainEngine:
     Engine for pattern detection and gnosis scanning.
     Provides analysis capabilities for text content.
     """
+
+    # Coherence scoring constants
+    # Each detected pattern contributes 1.5 points (max 3 points from patterns)
+    PATTERN_SCORE_WEIGHT = 1.5
+    MAX_PATTERN_SCORE = 3
+    # Each detected axiom contributes 0.5 points (max 2 points from axioms)
+    AXIOM_SCORE_WEIGHT = 0.5
+    MAX_AXIOM_SCORE = 2
+    # Maximum possible coherence score
+    MAX_COHERENCE_SCORE = 5
+    # Minimum score to be considered "coherent"
+    COHERENCE_THRESHOLD = 3
 
     # Pattern definitions
     PATTERNS = {
@@ -129,13 +140,19 @@ class MasterBrainEngine:
         axioms: List[str]
     ) -> Dict[str, Any]:
         """Calculate coherence score based on patterns and axioms."""
-        pattern_score = min(len(patterns) * 1.5, 3)
-        axiom_score = min(len(axioms) * 0.5, 2)
+        pattern_score = min(
+            len(patterns) * self.PATTERN_SCORE_WEIGHT,
+            self.MAX_PATTERN_SCORE
+        )
+        axiom_score = min(
+            len(axioms) * self.AXIOM_SCORE_WEIGHT,
+            self.MAX_AXIOM_SCORE
+        )
         total_score = int(pattern_score + axiom_score)
 
         return {
-            "score": f"{total_score}/5",
-            "coherent": total_score >= 3
+            "score": f"{total_score}/{self.MAX_COHERENCE_SCORE}",
+            "coherent": total_score >= self.COHERENCE_THRESHOLD
         }
 
     def _classify(

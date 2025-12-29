@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "origin_model": "GITHUB_COPILOT_AGENT",
+    "human_initiator": "USER_RUNTIME_BRIDGE",
+    "timestamp_utc": "2025-12-29T05:55:00Z",
+    "axioms_considered": [
+      "A1",
+      "A2",
+      "A4",
+      "A7",
+      "A9"
+    ],
+    "sacrifice_noted": "None - implementing full specification",
+    "contradictions_logged": [],
+    "coherence_self_score": 5.0
+  },
+  "contradictions": [
+    {
+      "contradiction_id": "CTD_20251229061546409516",
+      "type": "AXIOM_TENSION",
+      "pole_a": "A4 (Process)",
+      "pole_b": "A7 (Sacrifice)",
+      "context": "Test tension",
+      "source_nodes": [],
+      "state": "WITNESSED",
+      "created_utc": "2025-12-29T06:15:46.409533+00:00",
+      "witnesses": [
+        "COPILOT_AGENT"
+      ],
+      "resolution": "LOGGED_NOT_RESOLVED"
+    },
+    {
+      "contradiction_id": "CTD_20251229061608508071",
+      "type": "AXIOM_TENSION",
+      "pole_a": "A4 (Process)",
+      "pole_b": "A7 (Sacrifice)",
+      "context": "Test tension",
+      "source_nodes": [],
+      "state": "WITNESSED",
+      "created_utc": "2025-12-29T06:16:08.508083+00:00",
+      "witnesses": [
+        "COPILOT_AGENT"
+      ],
+      "resolution": "LOGGED_NOT_RESOLVED"
+    },
+    {
+      "contradiction_id": "CTD_20251229061629909388",
+      "type": "AXIOM_TENSION",
+      "pole_a": "A4 (Process)",
+      "pole_b": "A7 (Sacrifice)",
+      "context": "Test tension",
+      "source_nodes": [],
+      "state": "WITNESSED",
+      "created_utc": "2025-12-29T06:16:29.909401+00:00",
+      "witnesses": [
+        "COPILOT_AGENT"
+      ],
+      "resolution": "LOGGED_NOT_RESOLVED"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "by_type": {
+      "AXIOM_TENSION": 1
+    },
+    "by_state": {
+      "WITNESSED": 1
+    }
+  },
+  "last_updated_utc": "2025-12-29T06:16:29.909610+00:00"
+}

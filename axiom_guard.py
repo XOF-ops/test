@@ -43,6 +43,9 @@ MODULE_METADATA = {
     "coherence_self_score": 5.0
 }
 
+# Validation constants
+MIN_MEANINGFUL_EXPLANATION_LENGTH = 10  # Minimum characters for a meaningful explanation
+
 
 class AxiomDefinition:
     """
@@ -233,13 +236,13 @@ class AxiomGuard:
         reason = task_data.get("reason", "")
         description = task_data.get("description", "")
         
-        if reason and len(reason) > 10:  # Minimum meaningful explanation
+        if reason and len(reason) > MIN_MEANINGFUL_EXPLANATION_LENGTH:
             return ValidationResult(
                 axiom_id="A4",
                 passed=True,
                 evidence=f"Reasoning documented: {reason[:100]}..."
             )
-        elif description and len(description) > 10:
+        elif description and len(description) > MIN_MEANINGFUL_EXPLANATION_LENGTH:
             return ValidationResult(
                 axiom_id="A4",
                 passed=True,

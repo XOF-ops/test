@@ -133,6 +133,12 @@ See `AGENT_PROTOCOL.md` for complete operational instructions
 
 ```
 /
+├── core/                      # Core identity modules
+│   ├── __init__.py
+│   └── elpida_core.py         # Elpida root identity (IMMUTABLE)
+├── adapters/                  # External integration adapters
+│   ├── __init__.py
+│   └── elpida_adapter.py      # Elpida bridge layer
 ├── copilot/                   # Autonomous agent system
 │   ├── agent_startup.py       # Python agent (MODE A/B/C logic)
 │   ├── requirements.txt       # Python dependencies (psycopg2-binary)
@@ -167,6 +173,8 @@ See `AGENT_PROTOCOL.md` for complete operational instructions
 ├── requirements.txt         # Root dependencies (all services)
 └── README.md                # This file
 ```
+
+> **Note**: Elpida Core is immutable by design. All integrations occur externally through the adapter layer.
 
 ---
 

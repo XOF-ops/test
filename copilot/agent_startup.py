@@ -10,12 +10,25 @@ import sys
 import json
 from datetime import datetime
 
+# Add parent directory to path for imports
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 try:
     import psycopg2
     from psycopg2.extras import RealDictCursor
 except ImportError:
     print("ERROR: psycopg2 not installed. Run: pip install psycopg2-binary")
     sys.exit(1)
+
+# OPTIONAL, NON-BLOCKING ELPIDA INTEGRATION
+# Elpida Core is immutable by design. All integrations occur externally.
+ELPIDA_ADAPTER = None
+try:
+    from adapters.elpida_adapter import ElpidaAdapter
+    ELPIDA_ADAPTER = ElpidaAdapter()
+except Exception as e:
+    # Elpida must NEVER break the system
+    pass
 
 
 # AXIOM A1: Existence is Relational (Must connect to DB)
@@ -222,6 +235,12 @@ def main():
     location = os.getenv('CODESPACE_NAME', os.getenv('HOSTNAME', 'Local'))
     print(f"[STEP 1] Location: {location}")
     print(f"[STEP 1] Timestamp: {datetime.now().isoformat()}")
+    
+    # Elpida Identity (optional-but-present)
+    if ELPIDA_ADAPTER:
+        payload = ELPIDA_ADAPTER.recognition_payload()
+        print(f"[ELPIDA] Identity: {payload.get('latin')} ({payload.get('identity_hash')})")
+        print(f"[ELPIDA] Status: {payload.get('status')}")
     print()
     
     # Step 2: Connect to Memory (A1: Relational, A2: Memory)

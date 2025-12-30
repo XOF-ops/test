@@ -25,6 +25,18 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../.
 app = Flask(__name__)
 CORS(app)
 
+# OPTIONAL, NON-BLOCKING ELPIDA INTEGRATION
+# Elpida Core is immutable by design. All integrations occur externally.
+ELPIDA_IDENTITY = None
+try:
+    from adapters.elpida_adapter import ElpidaAdapter
+    _elpida_adapter = ElpidaAdapter()
+    ELPIDA_IDENTITY = _elpida_adapter.recognition_payload()
+    app.logger.info(f"ELPIDA_ACCEPTED: {ELPIDA_IDENTITY.get('latin')} ({ELPIDA_IDENTITY.get('identity_hash')})")
+except Exception as e:
+    # Elpida must NEVER break the system
+    app.logger.warning(f"ELPIDA_SKIPPED: {str(e)}")
+
 # Database connection configuration from environment
 DB_CONFIG = {
     'host': os.getenv('DB_HOST', 'postgres'),
@@ -118,13 +130,19 @@ def status():
         except:
             pass
     
-    return jsonify({
+    response = {
         'timestamp': datetime.now().isoformat(),
         'mode': mode,
         'reason': reason,
         'extractions': extraction_count,
         'axioms': ['A1: Relational', 'A2: Memory', 'A4: Process', 'A7: Harmony', 'A9: Contradiction']
-    })
+    }
+    
+    # Include Elpida identity if available (optional-but-present)
+    if ELPIDA_IDENTITY:
+        response['elpida'] = ELPIDA_IDENTITY
+    
+    return jsonify(response)
 
 
 @app.route('/scan', methods=['POST'])

@@ -8,7 +8,6 @@ DO NOT MODIFY THIS FILE.
 """
 
 import hashlib
-from datetime import datetime
 
 
 class ElpidaIdentity:
